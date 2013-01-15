@@ -1,0 +1,3 @@
+[submodule "lib/modernizr"]
+	path = lib/modernizr
+	url = git@github.com:Modernizr/Modernizr.git
