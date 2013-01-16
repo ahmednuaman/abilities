@@ -13,6 +13,9 @@ require_once 'harness.php';
     <body>
         <div id="container">
             <?php if ($harness->is_testing): ?>
+                <h1>Currently testing: <?php echo $harness->current_test->name; ?></h1>
+                <p><?php echo $harness->current_test->description; ?></p>
+                <script src="<?php echo $harness->current_test->path; ?>"></script>
             <?php else: ?>
                 <h1>Test harness</h1>
                 <p><a href="#" onclick="runAllTests();">Run all the tests!</a> or select some...</p>
@@ -27,6 +30,9 @@ require_once 'harness.php';
                             </li>
                          <?php endforeach; ?>
                     </ul>
+                    <button type="submit">
+                        Run tests
+                    </button>
                 </form>
             <?php endif; ?>
         </div>

@@ -12,6 +12,12 @@ class Harness
     public $is_testing = false;
 
     /**
+     * @var TestFile the current test to be ran
+     * @access public
+     */
+    public $current_test;
+
+    /**
      * Constructor
      *
      * @access public
@@ -20,6 +26,9 @@ class Harness
     {
         // start a session
         session_start();
+
+        // check to see if we're in testing or we're about to start
+        $this->_handle_request();
     }
 
     /**
@@ -47,6 +56,43 @@ class Harness
 
         return $tests;
     }
+
+    /**
+     * Checks to see if we're in testing or we're about to start
+     *
+     * @access private
+     */
+    private function _handle_request()
+    {
+        // are we about to start testing?
+        if (isset($_POST['tests']))
+        {
+            // right let's stick these tests into a sessions serialised array
+            $_SESSION['remaining_tests'] = serialize($_POST['tests']);
+        }
+
+        // can we haz remaining tests?
+        if (isset($_SESSION['remaining_tests']))
+        {
+            // ok, so we're testing
+            $this->is_testing = true;
+
+            // decode the remaining tests array and get the next one
+            $remaining_tests = unserialize($_SESSION['remaining_tests']);
+
+            // get next test
+            $next_test = array_shift($remaining_tests);
+
+            // and save the remaining tests, if any
+            if (count($remaining_tests) > 0)
+            {
+                $_SESSION['remaining_tests'] = serialize($remaining_tests);
+            }
+
+            // and on let's test!
+            $this->current_test = new TestFile(TESTS_FOLDER . $next_test . '.js');
+        }
+    }
 }
 
 /**
@@ -57,13 +103,21 @@ class TestFile
 {
     /**
      * @var string the name of the test (and file, minus the .js)
+     * @access public
      */
     public $name;
 
     /**
      * @var string the description of the test
+     * @access public
      */
     public $description;
+
+    /**
+     * @var string the path to the test js file
+     * @access public
+     */
+    public $path;
 
     /**
      * Constructor
@@ -77,6 +131,9 @@ class TestFile
     {
         // set the name
         $this->name = pathinfo($file, PATHINFO_FILENAME);
+
+        // set the path
+        $this->path = $file;
 
         // get the description
         $this->_get_description($file);
