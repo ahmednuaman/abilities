@@ -6,9 +6,7 @@
 class API
 {
     /**
-     * The MySQL connection
-     *
-     * @var object
+     * @var resource a reference to the mysqli resource
      * @access private
      */
     private $_con;
@@ -18,7 +16,7 @@ class API
      *
      * @access public
      */
-    function __construct()
+    public function __construct()
     {
         // let's connected to our db
         $this->_connect();
@@ -30,12 +28,14 @@ class API
     /**
      * Adds a test result into our DB
      *
-     * @param $device_id int the DB ID of the device entry
-     * @param $name string the name of the test, usually this is the JS test file name (minus .js)
-     * @param $description string the description of the test
-     * @param $value blob the resulting value of the test
-     *
      * @access private
+     *
+     * @param int $device_id the DB ID of the device entry
+     * @param string $name the name of the test, usually this is the JS test file name (minus .js)
+     * @param string $description the description of the test
+     * @param blob $value the resulting value of the test
+     *
+     * @return int the insert ID of the test result entry
      */
     private function _add_result($device_id, $name, $description, $value)
     {
@@ -52,9 +52,9 @@ class API
      * It also checks to see if a device has been registered yet
      * This method accepts an array
      *
-     * @param $results array an array of results
-     *
      * @access private
+     *
+     * @param array $results an array of results
      */
     private function _add_results($results)
     {
@@ -102,10 +102,12 @@ class API
     /**
      * Gets or generates a device ID
      *
-     * @param $device string the device ID, if any
-     * @param $user_agent string the browser user agent
-     *
      * @access private
+     *
+     * @param string $device the device ID, if any
+     * @param string $user_agent the browser user agent
+     *
+     * @return int the database device ID
      */
     private function _get_device_id($device, $user_agent)
     {

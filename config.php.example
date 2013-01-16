@@ -8,3 +8,6 @@ define('MYSQL_DB', '');
 // define our tables
 define('MYSQL_TABLE_DEVICE', 'device');
 define('MYSQL_TABLE_TEST_RESULT', 'test_result');
+
+// finally our tests folder
+define('TESTS_FOLDER', './tests/');
