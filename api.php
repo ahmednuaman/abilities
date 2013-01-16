@@ -78,7 +78,7 @@ class API
         }
 
         // return the device id as a response as a valid JSON string
-        echo '"' . $device_id . '"';
+        echo '"' . $device . '"';
     }
 
     /**
