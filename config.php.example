@@ -1,0 +1,10 @@
+<?php
+// now time for your mysql db details
+define('MYSQL_HOST', 'localhost');
+define('MYSQL_USERNAME', 'root');
+define('MYSQL_PASSWORD', '');
+define('MYSQL_DB', '');
+
+// define our tables
+define('MYSQL_TABLE_DEVICE', 'device');
+define('MYSQL_TABLE_TEST_RESULT', 'test_result');
