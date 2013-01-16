@@ -15,6 +15,16 @@ require_once 'harness.php';
             <?php if ($harness->is_testing): ?>
                 <h1>Currently testing: <?php echo $harness->current_test->name; ?></h1>
                 <p><?php echo $harness->current_test->description; ?></p>
+                <h3>Log</h3>
+                <pre id="log-area"></pre>
+                <script>
+                    var testData = {
+                        name: '<?php echo $harness->current_test->name; ?>',
+                        description: '<?php echo $harness->current_test->description; ?>'
+                    };
+                </script>
+                <script src="assets/js/vendor/benchmark-1.0.0.js"></script>
+                <script src="assets/js/benchmark-config.js"></script>
                 <script src="<?php echo $harness->current_test->path; ?>"></script>
             <?php else: ?>
                 <h1>Test harness</h1>

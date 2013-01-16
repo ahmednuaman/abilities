@@ -91,8 +91,7 @@ class Harness
             else
             {
                 // end the session
-                session_unset();
-                session_destroy();
+                unset($_SESSION['remaining_tests']);
             }
 
             // and on let's test!
@@ -167,7 +166,7 @@ class TestFile
         fclose($handler);
 
         // set the description
-        $this->description = str_replace('description: ', '', $line);
+        $this->description = trim(htmlspecialchars(str_replace('description: ', '', $line)));
     }
 }
 
