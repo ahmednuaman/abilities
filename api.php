@@ -34,6 +34,8 @@ class API
      * @param $name string the name of the test, usually this is the JS test file name (minus .js)
      * @param $description string the description of the test
      * @param $value blob the resulting value of the test
+     *
+     * @access private
      */
     private function _add_result($device_id, $name, $description, $value)
     {
@@ -51,6 +53,8 @@ class API
      * This method accepts an array
      *
      * @param $results array an array of results
+     *
+     * @access private
      */
     private function _add_results($results)
     {
@@ -100,6 +104,8 @@ class API
      *
      * @param $device string the device ID, if any
      * @param $user_agent string the browser user agent
+     *
+     * @access private
      */
     private function _get_device_id($device, $user_agent)
     {
@@ -150,3 +156,9 @@ class API
         }
     }
 }
+
+// get our config
+require_once 'config.php';
+
+// init it
+new API();
