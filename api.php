@@ -40,8 +40,8 @@ class API
     private function _add_result($device_id, $name, $description, $value)
     {
         // run the insert query
-        $query = $this->_con->query('INSERT INTO ' . MYSQL_TABLE_TEST_RESULT . ' (`device_id`, `name`, `description`, `value`) \
-            VALUES ("' . $device_id . '", "' . $name . '", "' . $description . '", "' . $value . '")');
+        $query = $this->_con->query('INSERT INTO ' . MYSQL_TABLE_TEST_RESULT . ' (`device_id`, `name`, `description`, `value`) ' .
+            'VALUES ("' . $device_id . '", "' . $name . '", "' . $description . '", "' . $value . '")');
 
         // return the insert ID, just for lulz
         return $this->_con->insert_id;
