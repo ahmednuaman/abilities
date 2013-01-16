@@ -88,6 +88,12 @@ class Harness
             {
                 $_SESSION['remaining_tests'] = serialize($remaining_tests);
             }
+            else
+            {
+                // end the session
+                session_unset();
+                session_destroy();
+            }
 
             // and on let's test!
             $this->current_test = new TestFile(TESTS_FOLDER . $next_test . '.js');
