@@ -44,6 +44,23 @@ require_once 'harness.php';
                         Run tests
                     </button>
                 </form>
+                <script>
+                    function runAllTests()
+                    {
+                        var els = document.getElementsByTagName('input');
+                        var form = document.getElementsByTagName('form')[0];
+                        var el;
+
+                        for (var i = els.length - 1; i >= 0; i--)
+                        {
+                            el = els[i];
+
+                            el.checked = true;
+                        }
+
+                        form.submit();
+                    }
+                </script>
             <?php endif; ?>
         </div>
     </body>
