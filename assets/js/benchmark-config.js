@@ -47,7 +47,7 @@ function save(result)
                 {
                     log('Saved data, going to next test, if any, in 5 seconds...');
 
-                    // setTimeout(next, 5000);
+                    setTimeout(next, 5000);
                 },
                 dataType: 'json',
                 data: {
