@@ -111,7 +111,7 @@ function createCookie(name, value, days)
         var expires = "; expires="+date.toGMTString();
     }
     else var expires = "";
-    document.cookie = name+"="+value+expires+"; path=/";
+    document.cookie = name+"="+value+expires+"; path=" + document.location.pathname;
 }
 
 function readCookie(name)
@@ -127,6 +127,32 @@ function readCookie(name)
     return null;
 }
 
+// our parsing benchmark func
+function parseBenchesData(benches)
+{
+    var marks = [ ];
+    var str = '{"benches":{';
+    var bench;
+
+    for (var i = benches.length - 1; i >= 0; i--)
+    {
+        bench = benches[i];
+
+        marks.push('"' + bench.name + '":{"count":' + bench.count +
+            ',"cycles":' + bench.cycles +
+            ',"hz":' + bench.hz +
+            ',"times":{"cycle":' + bench.times.cycle +
+            ',"elapsed":' + bench.times.elapsed + ',"period":' + bench.times.period +
+            '}}');
+    }
+
+    str += marks.join(',');
+
+    str += '}}';
+
+    return str;
+}
+
 // register listeners
 suite
 .on('start', function()
@@ -136,11 +162,12 @@ suite
 .on('complete', function()
 {
     var fastest = String(this.filter('fastest').pluck('name'));
+    var message = 'Fastest: ' + fastest + '; benches: ' + parseBenchesData(this);
 
     log('Finished test, fastest is ' + fastest);
     log('Saving data');
 
-    save(fastest);
+    save(message);
 })
 .on('cycle', function(event)
 {
