@@ -13,6 +13,7 @@ require_once 'harness.php';
     <body>
         <div id="container">
             <?php if ($harness->is_testing): ?>
+                <?php $time = time(); ?>
                 <h1>Currently testing: <?php echo $harness->current_test->name; ?></h1>
                 <p><?php echo $harness->current_test->description; ?></p>
                 <h3>Log</h3>
@@ -24,8 +25,8 @@ require_once 'harness.php';
                     };
                 </script>
                 <script src="assets/js/vendor/benchmark-1.0.0.js"></script>
-                <script src="assets/js/benchmark-config.js"></script>
-                <script src="<?php echo $harness->current_test->path; ?>"></script>
+                <script src="assets/js/benchmark-config.js?x=<?php echo $time; ?>"></script>
+                <script src="<?php echo $harness->current_test->path; ?>?x=<?php echo $time; ?>"></script>
             <?php else: ?>
                 <h1>Test harness</h1>
                 <p><a href="#" onclick="runAllTests();">Run all the tests!</a> or select some...</p>
