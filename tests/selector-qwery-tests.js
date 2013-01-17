@@ -1,8 +1,8 @@
 /*
-description: A test to see if vanilla selectors are faster than Sizzle; we are gonna get all the tags, then all the classes then one id
+description: A test to see if vanilla selectors are faster than qwery; we are gonna get all the tags, then all the classes then one id
 */
 
-loadScript('https://cdnjs.cloudflare.com/ajax/libs/sizzle/1.4.4/sizzle.min.js');
+loadScript('https://raw.github.com/ded/qwery/master/qwery.min.js');
 
 suite
 .on('start', function()
@@ -19,23 +19,23 @@ suite
     div.style.width = '';
     div.style.background = '';
 })
-.add('selector#sizzle', function()
+.add('selector#qwery', function()
 {
-    var divs = Sizzle('div');
+    var divs = qwery('div');
 
-    divs = Sizzle('div.divs');
+    divs = qwery('div.divs');
 
-    var div = Sizzle('div#div1')[0];
+    var div = qwery('div#div1')[0];
 
     div.style.height = '10px';
     div.style.width = '10px';
     div.style.background = 'red';
 });
 
-// wait for sizzle before we run
+// wait for qwery before we run
 var runInterval = setInterval(function()
 {
-    if ("Sizzle" in window)
+    if ("qwery" in window)
     {
         clearTimeout(runInterval);
 

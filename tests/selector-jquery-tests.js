@@ -19,35 +19,6 @@ suite
     div.style.width = '';
     div.style.background = '';
 })
-.add('selector#vanilla', function()
-{
-    // get our body
-    var body = document.getElementsByTagName('body')[0];
-
-    // now find our divs!
-    var bodyDivs = body.getElementsByTagName('div');
-
-    // now find our div classes
-    var divs = [ ];
-    var div;
-
-    for (var i = bodyDivs.length - 1; i >= 0; i--)
-    {
-        div = bodyDivs[i];
-
-        if (div.className === 'divs')
-        {
-            divs.push(div);
-        }
-    }
-
-    // and then by id
-    div = document.getElementById('div1');
-
-    div.style.height = '10px';
-    div.style.width = '10px';
-    div.style.background = 'red';
-})
 .add('selector#jquery', function()
 {
     var divs = $('div');
