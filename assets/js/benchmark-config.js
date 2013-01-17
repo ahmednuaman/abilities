@@ -1,4 +1,6 @@
-var benchmark = new Benchmark();
+var benchmark = new Benchmark({
+    'maxTime': 30
+});
 var suite = new Benchmark.Suite();
 var logArea = document.getElementById('log-area');
 
