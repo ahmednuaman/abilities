@@ -174,6 +174,12 @@ var deviceId = (function()
         }
     }
 
+    // now samsung http://www.samsungdforum.com/Guide/ref00008/tvinformation/dtv_tvinformation_tvinfomanager.html
+    // if (/Maple|SMART\-TV/.test(navigator.userAgent))
+    // {
+
+    // }
+
     // if all else fails we assign a generated device id
     if (!device)
     {
