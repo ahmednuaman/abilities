@@ -135,7 +135,7 @@ suite
 })
 .on('complete', function()
 {
-    var fastest = this.filter('fastest').pluck('name');
+    var fastest = String(this.filter('fastest').pluck('name'));
 
     log('Finished test, fastest is ' + fastest);
     log('Saving data');
