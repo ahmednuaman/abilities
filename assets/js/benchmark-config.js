@@ -2,6 +2,36 @@ var benchmark = new Benchmark();
 var suite = new Benchmark.Suite();
 var logArea = document.getElementById('log-area');
 
+// our element creation script
+function createElements(number, tag, cls, id)
+{
+    var body = document.getElementsByTagName('body')[0];
+    var el;
+
+    log('Creating selector elements');
+
+    for (var i = 0; i < number; i++)
+    {
+        el = document.createElement(tag);
+
+        el.className = cls;
+
+        el.id = id + i;
+
+        body.appendChild(el);
+    }
+}
+
+// our script loading function
+function loadScript(url)
+{
+    var scr = document.createElement('script');
+        scr.type = 'text/javascript';
+        scr.async = true;
+        scr.src = url;
+        (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(scr);
+}
+
 // our logging function
 function log(message)
 {
@@ -22,11 +52,7 @@ function save(result)
         log('No jQuery found, load it');
 
         // load jQuery
-        var scr = document.createElement('script');
-            scr.type = 'text/javascript';
-            scr.async = true;
-            scr.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js';
-            (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(scr);
+        loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
     }
 
     // async our ajax request

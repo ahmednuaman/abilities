@@ -5,11 +5,7 @@ description: all the Modernizr tests in one; the resulting value is a string of 
 // we're not actually gonna use benchmark here, we're just gonna load Modernizr and save the classes
 (function()
 {
-    var scr = document.createElement('script');
-        scr.type = 'text/javascript';
-        scr.async = true;
-        scr.src = 'http://modernizr.com/downloads/modernizr-latest.js';
-        (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(scr);
+    loadScript('http://modernizr.com/downloads/modernizr-latest.js');
 
     log('Loading Modernizr');
 
