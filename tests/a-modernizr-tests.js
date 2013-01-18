@@ -21,8 +21,28 @@ description: all the Modernizr tests in one; the resulting value is a string of 
             // stop the interval
             clearInterval(loadInterval);
 
+            // json-ise the class names
+            var classes = document.getElementsByTagName('html')[0].className.split(' ');
+            var arr = [ ];
+            var item;
+            var has;
+
+            for (var i = classes.length - 1; i >= 0; i--)
+            {
+                item = classes[i];
+
+                if (!item)
+                {
+                    continue;
+                }
+
+                has = item.indexOf('no-') === -1;
+
+                arr.push('"' + item.replace('no-', '') + '":' + has);
+            }
+
             // save the class names
-            helpers.save(document.getElementsByTagName('html')[0].className);
+            helpers.save('{' + arr.join(',') + '}');
 
             return;
         }
