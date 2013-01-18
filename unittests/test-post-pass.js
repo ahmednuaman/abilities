@@ -1,6 +1,3 @@
-// make up a device id
-var deviceId = 'casper-' + (new Date()).getTime();
-
 casper
 .start().open(url, {
     method: 'post',
@@ -11,9 +8,6 @@ casper
         'results[1][name]': 'another_test',
         'results[1][description]': 'This is another test, woop',
         'results[1][value]': 'foo-bar-foo'
-    },
-    headers: {
-        'X_REQUEST_DEVICE': deviceId
     }
 })
 .then(function()

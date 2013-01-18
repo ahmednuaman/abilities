@@ -106,7 +106,7 @@ class Harness
         // otherwise if a device_id isn't sent and one hasn't been assigned, let's fake one
         elseif (!isset($_SESSION['device_id']))
         {
-            $_SESSION['device_id'] = 'fake-' + time();
+            $_SESSION['device_id'] = 'fake-' . time();
         }
     }
 }
