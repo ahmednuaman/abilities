@@ -12,7 +12,6 @@ casper
 })
 .then(function()
 {
-    this.test.assertTextExists(deviceId, 'Check that we get the device ID back');
     this.test.assertHttpStatus(200, 'Check that we get a 200 status');
 });
 
