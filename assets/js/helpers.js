@@ -45,55 +45,47 @@ var helpers = {
     // our save message, loads jquery async'ly if it's not available and then saves the data to the api relative to a device id
     save: function(result)
     {
+        var xhr;
+
         helpers.log('Saving result: ' + result);
 
-        // check for jquery
-        if (typeof jQuery === 'undefined')
+        if ("ActiveXObject" in window)
         {
-            helpers.log('No jQuery found, load it');
-
-            // load jQuery
-            helpers.loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
-        }
-
-        // async our ajax request
-        var ajaxRequestInterval = setInterval(function()
-        {
-            helpers.log('Checking for jQuery');
-
-            if ("$" in window)
+            try
             {
-                helpers.log('jQuery found');
-
-                clearInterval(ajaxRequestInterval);
-
-                $.ajax({
-                    url: 'api.php',
-                    method: 'post',
-                    success: function(data)
-                    {
-                        helpers.log('Saved data, going to next test, if any, in 5 seconds...');
-
-                        setTimeout(helpers.next, 5000);
-                    },
-                    dataType: 'json',
-                    data: {
-                        results: [{
-                            name: testData.name,
-                            description: testData.description,
-                            value: result
-                        }]
-                    },
-                    headers: {
-                        'X_REQUEST_DEVICE': helpers.getDeviceId()
-                    }
-                });
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch(e)
+            {
+                helpers.log('No XHR found!');
 
                 return;
             }
+        }
+        else
+        {
+            xhr = new XMLHttpRequest();
+        }
 
-            helpers.log('No jQuery yet');
-        }, 2000);
+        xhr.onreadystatechange = function()
+        {
+            if (xhr.readyState === 4)
+            {
+                helpers.log('Saved data, going to next test, if any, in 5 seconds...');
+
+                setTimeout(helpers.next, 5000);
+            }
+        };
+
+        xhr.open('POST', 'api.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('X_REQUEST_DEVICE', helpers.getDeviceId());
+
+        xhr.send(
+            'results[0][name]=' + encodeURIComponent(testData.name) +
+            '&results[0][description]=' + encodeURIComponent(testData.description) +
+            '&results[0][value]=' + encodeURIComponent(result)
+        );
     },
 
     // a simple function that simply reloads the page after our tests
