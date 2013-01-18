@@ -2,16 +2,16 @@
 description: A test to see if vanilla selectors are faster than qwery; we are gonna get all the tags, then all the classes then one id
 */
 
-loadScript('https://raw.github.com/ded/qwery/master/qwery.min.js');
+helpers.loadScript('https://raw.github.com/ded/qwery/master/qwery.min.js');
 
 suite
 .on('start', function()
 {
-    createElements(500, 'div', 'divs', 'div');
+    helpers.createElements(500, 'div', 'divs', 'div');
 })
 .on('cycle', function()
 {
-    log('Resetting div colour');
+    helpers.log('Resetting div colour');
 
     var div = document.getElementById('div1');
 

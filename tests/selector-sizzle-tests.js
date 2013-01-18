@@ -2,16 +2,16 @@
 description: A test to see if vanilla selectors are faster than Sizzle; we are gonna get all the tags, then all the classes then one id
 */
 
-loadScript('https://cdnjs.cloudflare.com/ajax/libs/sizzle/1.4.4/sizzle.min.js');
+helpers.loadScript('https://cdnjs.cloudflare.com/ajax/libs/sizzle/1.4.4/sizzle.min.js');
 
 suite
 .on('start', function()
 {
-    createElements(500, 'div', 'divs', 'div');
+    helpers.createElements(500, 'div', 'divs', 'div');
 })
 .on('cycle', function()
 {
-    log('Resetting div colour');
+    helpers.log('Resetting div colour');
 
     var div = document.getElementById('div1');
 

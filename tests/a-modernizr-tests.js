@@ -5,28 +5,28 @@ description: all the Modernizr tests in one; the resulting value is a string of 
 // we're not actually gonna use benchmark here, we're just gonna load Modernizr and save the classes
 (function()
 {
-    loadScript('http://modernizr.com/downloads/modernizr-latest.js');
+    helpers.loadScript('http://modernizr.com/downloads/modernizr-latest.js');
 
-    log('Loading Modernizr');
+    helpers.log('Loading Modernizr');
 
     // test to see if Modernizr has loaded
     var loadInterval = setInterval(function()
     {
-        log('Checking for Modernizr');
+        helpers.log('Checking for Modernizr');
 
         if ("Modernizr" in window)
         {
-            log('Modernizr found');
+            helpers.log('Modernizr found');
 
             // stop the interval
             clearInterval(loadInterval);
 
             // save the class names
-            save(document.getElementsByTagName('html')[0].className);
+            helpers.save(document.getElementsByTagName('html')[0].className);
 
             return;
         }
 
-        log('No Modernizr yet');
+        helpers.log('No Modernizr yet');
     }, 2000);
 })();

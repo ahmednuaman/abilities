@@ -74,7 +74,7 @@ var helpers = {
                     {
                         helpers.log('Saved data, going to next test, if any, in 5 seconds...');
 
-                        setTimeout(next, 5000);
+                        setTimeout(helpers.next, 5000);
                     },
                     dataType: 'json',
                     data: {
@@ -85,7 +85,7 @@ var helpers = {
                         }]
                     },
                     headers: {
-                        'X_REQUEST_DEVICE': getDeviceID()
+                        'X_REQUEST_DEVICE': helpers.getDeviceId()
                     }
                 });
 
