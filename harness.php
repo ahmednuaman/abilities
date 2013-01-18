@@ -99,9 +99,9 @@ class Harness
         }
 
         // has a device id been passed to us?
-        if (isset($_GET['device_id']))
+        if (isset($_POST['device_id']))
         {
-            $_SESSION['device_id'] = $_GET['device_id'];
+            $_SESSION['device_id'] = $_POST['device_id'];
         }
         // otherwise if a device_id isn't sent and one hasn't been assigned, let's fake one
         elseif (!isset($_SESSION['device_id']))
