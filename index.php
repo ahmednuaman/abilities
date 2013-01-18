@@ -18,6 +18,7 @@ require_once 'harness.php';
                 <p><?php echo $harness->current_test->description; ?></p>
                 <h3>Log</h3>
                 <pre id="log-area"></pre>
+                <div id="dump-area"></div>
                 <script>
                     var testData = {
                         name: '<?php echo $harness->current_test->name; ?>',
