@@ -27,7 +27,6 @@ require_once 'harness.php';
                 </script>
                 <script src="assets/js/vendor/benchmark-1.0.0.js"></script>
                 <script src="assets/js/helpers.js?x=<?php echo $time; ?>"></script>
-                <script src="assets/js/get-device-id.js?x=<?php echo $time; ?>"></script>
                 <script src="assets/js/config.js?x=<?php echo $time; ?>"></script>
                 <script src="<?php echo $harness->current_test->path; ?>?x=<?php echo $time; ?>"></script>
             <?php else: ?>

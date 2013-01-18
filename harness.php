@@ -97,6 +97,17 @@ class Harness
             // and on let's test!
             $this->current_test = new TestFile(TESTS_FOLDER . $next_test . '.js');
         }
+
+        // has a device id been passed to us?
+        if (isset($_GET['device_id']))
+        {
+            $_SESSION['device_id'] = $_GET['device_id'];
+        }
+        // otherwise if a device_id isn't sent and one hasn't been assigned, let's fake one
+        elseif (!isset($_SESSION['device_id']))
+        {
+            $_SESSION['device_id'] = 'fake-' + time();
+        }
     }
 }
 

@@ -18,6 +18,9 @@ class API
      */
     public function __construct()
     {
+        // start our session
+        session_start();
+
         // let's connected to our db
         $this->_connect();
 
@@ -59,7 +62,7 @@ class API
     private function _add_results($results)
     {
         // try and get the device's id and user agent
-        $device = $this->_con->real_escape_string($_SERVER['HTTP_X_REQUEST_DEVICE']);
+        $device = $this->_con->real_escape_string($_SESSION['device_id']);
         $user_agent = $this->_con->real_escape_string($_SERVER['HTTP_USER_AGENT']);
 
         // check our db to see if this device exists

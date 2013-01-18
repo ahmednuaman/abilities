@@ -79,7 +79,6 @@ var helpers = {
 
         xhr.open('POST', 'api.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.setRequestHeader('X_REQUEST_DEVICE', helpers.getDeviceId());
 
         xhr.send(
             'results[0][name]=' + encodeURIComponent(testData.name) +
