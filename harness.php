@@ -24,9 +24,6 @@ class Harness
      */
     public function __construct()
     {
-        // start a session
-        session_start();
-
         // check to see if we're in testing or we're about to start
         $this->_handle_request();
     }
@@ -180,6 +177,9 @@ class TestFile
         $this->description = trim(htmlspecialchars(str_replace('description: ', '', $line)));
     }
 }
+
+// start a session
+session_start();
 
 // get our config
 require_once 'config.php';

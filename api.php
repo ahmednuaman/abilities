@@ -18,9 +18,6 @@ class API
      */
     public function __construct()
     {
-        // start our session
-        session_start();
-
         // let's connected to our db
         $this->_connect();
 
@@ -161,6 +158,8 @@ class API
         }
     }
 }
+// start a session
+session_start();
 
 // get our config
 require_once 'config.php';
