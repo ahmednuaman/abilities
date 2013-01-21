@@ -36,7 +36,7 @@ require_once 'harness.php';
                 <script src="<?php echo $harness->current_test->path; ?>?x=<?php echo $time; ?>"></script>
             <?php else: ?>
                 <h1>Test harness</h1>
-                <p><a href="#" onclick="runAllTests();">Run all the tests!</a> or select some...</p>
+                <p><a href="#" id="run-all-tests" onclick="runAllTests();">Run all the tests!</a> or select some...</p>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                     <ul>
                         <?php foreach ($harness->get_all_tests() as $test): ?>
@@ -68,6 +68,10 @@ require_once 'harness.php';
 
                         form.submit();
                     }
+
+                    var link = document.getElementById('run-all-tests');
+
+                    link.focus();
                 </script>
             <?php endif; ?>
         </div>
