@@ -2,8 +2,6 @@
 description: A test to see if vanilla selectors are the fastest; we are gonna get all the tags, then all the classes then one id
 */
 
-helpers.loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
-
 suite
 .on('start', function()
 {
@@ -47,15 +45,5 @@ suite
     div.style.height = '10px';
     div.style.width = '10px';
     div.style.background = 'red';
-});
-
-// wait for jquery before we run
-var runInterval = setInterval(function()
-{
-    if ("$" in window)
-    {
-        clearTimeout(runInterval);
-
-        suite.run();
-    }
-}, 500);
+})
+.run();
