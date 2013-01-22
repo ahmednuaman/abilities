@@ -4,33 +4,19 @@ description: a test to see what is the max number of connections a browser can h
 
 var connections = 0;
 var imagesLoaded = 0;
-var limit = 24;
-var latencyStart = (new Date()).getTime();
-// var url = 'assets/img/jpegprog.jpg';
-var url = 'http://static-gadgets.appspot.com/assets/img/jpegprog.jpg';
-var latency;
+var limit = 30;
+var time = (new Date()).getTime();
 
-function calculateLatency(event)
-{
-    var done = (new Date()).getTime();
-
-    latency = done - latencyStart;
-
-    helpers.log('Latency calculated: ' + latency);
-
-    loadMoreImages();
-}
-
-function loadImage()
+function loadImage(url)
 {
     var img = new Image();
     var start = (new Date()).getTime();
 
-    img.onload = arguments[0] || function(event)
+    img.onload = function(event)
     {
         var done = (new Date()).getTime();
 
-        if (done - start <= latency)
+        if (done - start <= 4000)
         {
             // concurrent!
             connections++;
@@ -47,7 +33,7 @@ function loadImage()
         }
     };
 
-    img.src = url + '?x=' + (new Date()).getTime();
+    img.src = url;
 
     helpers.log('Loading image: ' + img.src);
 }
@@ -56,14 +42,14 @@ function loadMoreImages()
 {
     for (var i = limit - 1; i >= 0; i--)
     {
-        loadImage();
+        for (var j = 1; j >= 0; j--)
+        {
+            loadImage('http://' + i + '.resource-cgi-hr.appspot.com/?type=gif&sleep=2&n=' + j + '&t=' + time);
+        }
     }
 }
 
 (function()
 {
-    // load first image to check latency
-    loadImage(
-        calculateLatency
-    );
+    loadMoreImages();
 })();
