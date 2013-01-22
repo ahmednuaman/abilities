@@ -46,7 +46,7 @@ function loadImage(ext, dfd)
 suite
 .on('cycle', function()
 {
-    // clear the dumb area
+    // clear the dump area
     dumpArea.innerHTML = '';
 
     // null last image

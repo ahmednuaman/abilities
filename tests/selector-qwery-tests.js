@@ -35,7 +35,7 @@ suite
 // wait for qwery before we run
 var runInterval = setInterval(function()
 {
-    if ("qwery" in window)
+    if ('qwery' in window)
     {
         clearTimeout(runInterval);
 

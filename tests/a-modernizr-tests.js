@@ -14,7 +14,7 @@ description: all the Modernizr tests in one; the resulting value is a string of 
     {
         helpers.log('Checking for Modernizr');
 
-        if ("Modernizr" in window)
+        if ('Modernizr' in window)
         {
             helpers.log('Modernizr found');
 

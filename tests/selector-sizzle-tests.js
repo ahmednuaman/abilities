@@ -35,7 +35,7 @@ suite
 // wait for sizzle before we run
 var runInterval = setInterval(function()
 {
-    if ("Sizzle" in window)
+    if ('Sizzle' in window)
     {
         clearTimeout(runInterval);
 
