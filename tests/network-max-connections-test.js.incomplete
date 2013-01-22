@@ -1,0 +1,69 @@
+/*
+description: a test to see what is the max number of connections a browser can handle
+*/
+
+var connections = 0;
+var imagesLoaded = 0;
+var limit = 24;
+var latencyStart = (new Date()).getTime();
+// var url = 'assets/img/jpegprog.jpg';
+var url = 'http://static-gadgets.appspot.com/assets/img/jpegprog.jpg';
+var latency;
+
+function calculateLatency(event)
+{
+    var done = (new Date()).getTime();
+
+    latency = done - latencyStart;
+
+    helpers.log('Latency calculated: ' + latency);
+
+    loadMoreImages();
+}
+
+function loadImage()
+{
+    var img = new Image();
+    var start = (new Date()).getTime();
+
+    img.onload = arguments[0] || function(event)
+    {
+        var done = (new Date()).getTime();
+
+        if (done - start <= latency)
+        {
+            // concurrent!
+            connections++;
+        }
+
+        imagesLoaded++;
+
+        if (imagesLoaded === limit)
+        {
+            // we're done
+            helpers.log('All images loaded, ' + connections + ' connections are concurrent');
+
+            // helpers.save('{"connections":' + connections + ',"latency":' + latency + '}');
+        }
+    };
+
+    img.src = url + '?x=' + (new Date()).getTime();
+
+    helpers.log('Loading image: ' + img.src);
+}
+
+function loadMoreImages()
+{
+    for (var i = limit - 1; i >= 0; i--)
+    {
+        loadImage();
+    }
+}
+
+(function()
+{
+    // load first image to check latency
+    loadImage(
+        calculateLatency
+    );
+})();
