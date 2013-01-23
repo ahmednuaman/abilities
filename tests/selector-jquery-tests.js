@@ -2,7 +2,7 @@
 description: A test to see if vanilla selectors are faster than jQuery; we are gonna get all the tags, then all the classes then one id
 */
 
-helpers.loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
+helpers.loadScript('http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
 
 suite
 .on('start', function()

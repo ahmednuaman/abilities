@@ -57,13 +57,13 @@ suite
         loadImage('http://static-gadgets.appspot.com/assets/img/jpegprog.jpg', dfd);
     }
 })
-.add('network-latency#google-appengine-https', {
-    defer: true,
-    fn: function(dfd)
-    {
-        loadImage('https://static-gadgets.appspot.com/assets/img/jpegprog.jpg', dfd);
-    }
-})
+// .add('network-latency#google-appengine-https', {
+//     defer: true,
+//     fn: function(dfd)
+//     {
+//         loadImage('https://static-gadgets.appspot.com/assets/img/jpegprog.jpg', dfd);
+//     }
+// })
 .run({
     async: true
-})
+});
