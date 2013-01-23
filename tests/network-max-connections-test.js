@@ -1,5 +1,5 @@
 /*
-description: a test to see what is the max number of concurrent connections to different hosts a browser can handle
+description: A test to see what is the max number of concurrent connections to different hosts a browser can handle
 */
 
 var connections = 0;

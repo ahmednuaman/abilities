@@ -1,5 +1,5 @@
 /*
-description: all the css3tests in one sexy bunch; simply outputs the result of what is and what is not supported
+description: All the css3tests in one sexy bunch; simply outputs the result of what is and what is not supported
 */
 
 // we're not actually gonna use benchmark here, we're just gonna load Modernizr and save the classes
