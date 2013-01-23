@@ -74,9 +74,11 @@ require_once 'harness.php';
                     link.focus();
                 </script>
                 <?php if (isset($_POST['autorun'])): ?>
-                    <script>
-                        runAllTests();
-                    </script>
+                    <?php if ($_POST['autorun'] == '1'): ?>
+                        <script>
+                            runAllTests();
+                        </script>
+                    <?php endif ?>
                 <?php endif ?>
             <?php endif; ?>
         </div>
