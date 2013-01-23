@@ -1,10 +1,6 @@
 <?php
 // get the harness
-// require_once 'harness.php';
-//
-// actually for lulz we're gonna do a redirect to a debugger
-header('location: debugger.php');
-die();
+require_once 'harness.php';
 ?>
 <!DOCTYPE html>
 <html class="no-js">
