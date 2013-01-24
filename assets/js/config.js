@@ -1,6 +1,6 @@
 // create bench and suite
 var benchmark = new Benchmark({
-    'maxTime': 30
+    'maxTime': 300
 });
 var suite = new Benchmark.Suite();
 
