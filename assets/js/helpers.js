@@ -3,8 +3,8 @@
 // check for console.log
 if (!('console' in window)) {
     var console = {
-        log: window.alert;
-    }
+        log: window.alert
+    };
 };
 
 var helpers = {
