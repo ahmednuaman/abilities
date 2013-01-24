@@ -2,7 +2,7 @@
 description: A test to see if vanilla selectors are faster than qwery; we are gonna get all the tags, then all the classes then one id
 */
 
-helpers.loadScript('http://raw.github.com/ded/qwery/master/qwery.min.js');
+helpers.loadScript('assets/js/vendor/qwery.js');
 
 suite
 .on('start', function()

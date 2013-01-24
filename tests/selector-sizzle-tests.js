@@ -2,7 +2,7 @@
 description: A test to see if vanilla selectors are faster than Sizzle; we are gonna get all the tags, then all the classes then one id
 */
 
-helpers.loadScript('http://cdnjs.cloudflare.com/ajax/libs/sizzle/1.4.4/sizzle.min.js');
+helpers.loadScript('assets/js/vendor/sizzle.js');
 
 suite
 .on('start', function()

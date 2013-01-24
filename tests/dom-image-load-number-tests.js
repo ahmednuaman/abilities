@@ -2,7 +2,7 @@
 description: A test case to see what is the optimum amount of images and which type to load at any one time
 */
 
-helpers.loadScript('https://raw.github.com/kriskowal/q/master/q.js');
+helpers.loadScript('assets/js/vendor/q.js');
 
 var baseURL = 'assets/img/';
 var lastImg;

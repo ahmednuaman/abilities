@@ -5,7 +5,7 @@ description: All the Modernizr tests in one; the resulting value is a string of 
 // we're not actually gonna use benchmark here, we're just gonna load Modernizr and save the classes
 (function()
 {
-    helpers.loadScript('http://modernizr.com/downloads/modernizr-latest.js');
+    helpers.loadScript('assets/js/vendor/modernizr.js');
 
     helpers.log('Loading Modernizr');
 
@@ -13,6 +13,7 @@ description: All the Modernizr tests in one; the resulting value is a string of 
     var loadInterval = setInterval(function()
     {
         helpers.log('Checking for Modernizr');
+        helpers.log(document.getElementsByTagName('html')[0].className.split(' '));
 
         if ('Modernizr' in window)
         {
