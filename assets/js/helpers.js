@@ -90,7 +90,7 @@ var helpers = {
     {
         helpers.log('Loading...');
 
-        window.location.reload();
+        window.location.href = window.location.href;
     },
 
     // a simple function that creates a cookie
