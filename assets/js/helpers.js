@@ -1,5 +1,12 @@
 // our harness helpers
 
+// check for console.log
+if (!('console' in window)) {
+    var console = {
+        log: window.alert;
+    }
+};
+
 var helpers = {
     // a simple function that creates a load of elements for us, this is handy for selector speed testing
     createElements: function(number, tag, cls, id)
