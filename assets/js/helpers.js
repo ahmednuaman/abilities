@@ -1,12 +1,5 @@
 // our harness helpers
 
-// check for console.log
-if (!('console' in window)) {
-    var console = {
-        log: window.alert
-    };
-};
-
 var helpers = {
     // a simple function that creates a load of elements for us, this is handy for selector speed testing
     createElements: function(number, tag, cls, id)
@@ -45,8 +38,6 @@ var helpers = {
     {
         // save to console and log area
         logArea.innerHTML += message + "\n";
-
-        console.log(message);
     },
 
     // our save message, loads jquery async'ly if it's not available and then saves the data to the api relative to a device id
