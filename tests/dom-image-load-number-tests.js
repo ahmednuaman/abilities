@@ -85,13 +85,6 @@ suite
         loadImages('png8.png', 100, dfd);
     }
 })
-.add('dom-image-load-number#png8x500', {
-    defer: true,
-    fn: function(dfd)
-    {
-        loadImages('png8.png', 500, dfd);
-    }
-})
 .add('dom-image-load-number#png24x10', {
     defer: true,
     fn: function(dfd)
@@ -111,13 +104,6 @@ suite
     fn: function(dfd)
     {
         loadImages('png24.png', 100, dfd);
-    }
-})
-.add('dom-image-load-number#png24x500', {
-    defer: true,
-    fn: function(dfd)
-    {
-        loadImages('png24.png', 500, dfd);
     }
 })
 .add('dom-image-load-number#gifx10', {
@@ -141,13 +127,6 @@ suite
         loadImages('gif.gif', 100, dfd);
     }
 })
-.add('dom-image-load-number#gifx500', {
-    defer: true,
-    fn: function(dfd)
-    {
-        loadImages('gif.gif', 500, dfd);
-    }
-})
 .add('dom-image-load-number#jpegoptx10', {
     defer: true,
     fn: function(dfd)
@@ -169,13 +148,6 @@ suite
         loadImages('jpegopt.jpg', 100, dfd);
     }
 })
-.add('dom-image-load-number#jpegoptx500', {
-    defer: true,
-    fn: function(dfd)
-    {
-        loadImages('jpegopt.jpg', 500, dfd);
-    }
-})
 .add('dom-image-load-number#jpegprogx10', {
     defer: true,
     fn: function(dfd)
@@ -195,13 +167,6 @@ suite
     fn: function(dfd)
     {
         loadImages('jpegprog.jpg', 100, dfd);
-    }
-})
-.add('dom-image-load-number#jpegprogx500', {
-    defer: true,
-    fn: function(dfd)
-    {
-        loadImages('jpegprog.jpg', 500, dfd);
     }
 });
 
