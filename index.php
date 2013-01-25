@@ -1,4 +1,7 @@
 <?php
+// set el time
+$time = time();
+
 // get the harness
 require_once 'harness.php';
 ?>
@@ -8,6 +11,7 @@ require_once 'harness.php';
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0" />
+        <script src="assets/js/helpers.js?x=<?php echo $time; ?>"></script>
         <style>
             body {
                 background: #ffffff;
@@ -18,7 +22,6 @@ require_once 'harness.php';
     <body>
         <div id="container">
             <?php if ($harness->is_testing): ?>
-                <?php $time = time(); ?>
                 <h1>Currently testing: <?php echo $harness->current_test->name; ?></h1>
                 <p><?php echo $harness->current_test->description; ?></p>
                 <h3>Log</h3>
@@ -31,7 +34,6 @@ require_once 'harness.php';
                     };
                 </script>
                 <script src="assets/js/vendor/benchmark-1.0.0.js"></script>
-                <script src="assets/js/helpers.js?x=<?php echo $time; ?>"></script>
                 <script src="assets/js/config.js?x=<?php echo $time; ?>"></script>
                 <script src="<?php echo $harness->current_test->path; ?>?x=<?php echo $time; ?>"></script>
             <?php else: ?>
@@ -41,6 +43,14 @@ require_once 'harness.php';
                         <h3>Tests complete</h3>
                         <p>It tooks <?php echo strftime('%M:%S', $harness->tests_time); ?> (MM:SS) to complete the tests</p>
                     </div>
+                    <script>
+                        var testData = {
+                            name: 'total-test-time',
+                            description: 'The total time it took to complete all the tests, in seconds'
+                        };
+
+                        helpers.save(<?php echo $harness->tests_time ?>, false);
+                    </script>
                 <?php endif ?>
                 <p><a href="#" id="run-all-tests" onclick="runAllTests();">Run all the tests!</a> or select some...</p>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">

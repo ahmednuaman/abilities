@@ -37,12 +37,15 @@ var helpers = {
     log: function(message)
     {
         // save to console and log area
-        logArea.innerHTML += message + "\n";
+        try {
+            logArea.innerHTML += message + "\n";
+        } catch (e) { };
     },
 
     // our save message, loads jquery async'ly if it's not available and then saves the data to the api relative to a device id
     save: function(result)
     {
+        var refresh = !(arguments[1] === false);
         var xhr;
 
         helpers.log('Saving result: ' + result);
@@ -71,7 +74,10 @@ var helpers = {
             {
                 helpers.log('Saved data, going to next test, if any, in 5 seconds...');
 
-                setTimeout(helpers.next, 5000);
+                if (refresh)
+                {
+                    setTimeout(helpers.next, 5000);
+                }
             }
         };
 
