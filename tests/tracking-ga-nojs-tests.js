@@ -22,10 +22,14 @@ suite
 
         img.onload = function()
         {
+            helpers.log('Tracked: ' + img.src);
+
             dfd.resolve();
         };
 
-        img.src = url + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/some-path/' + (new Date()).getTime())
+        img.src = url + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/some-path/' + (new Date()).getTime());
+
+        helpers.log('Tracking: ' + img.src);
     }
 })
 .run({
