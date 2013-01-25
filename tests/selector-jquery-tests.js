@@ -37,7 +37,7 @@ suite
 // wait for jquery before we run
 var runInterval = setInterval(function()
 {
-    if ("$" in window)
+    if ('$' in window)
     {
         clearTimeout(runInterval);
 
