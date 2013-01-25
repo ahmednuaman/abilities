@@ -36,6 +36,12 @@ require_once 'harness.php';
                 <script src="<?php echo $harness->current_test->path; ?>?x=<?php echo $time; ?>"></script>
             <?php else: ?>
                 <h1>Test harness</h1>
+                <?php if ($harness->tests_time): ?>
+                    <div>
+                        <h3>Tests complete</h3>
+                        <p>It tooks <?php echo strftime('%M:%S', $harness->tests_time); ?> (MM:SS) to complete the tests</p>
+                    </div>
+                <?php endif ?>
                 <p><a href="#" id="run-all-tests" onclick="runAllTests();">Run all the tests!</a> or select some...</p>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                     <ul>

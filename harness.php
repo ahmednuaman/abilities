@@ -18,6 +18,12 @@ class Harness
     public $current_test;
 
     /**
+     * @var int the time it took tests to complete
+     * @access public
+     */
+    public $tests_time;
+
+    /**
      * Constructor
      *
      * @access public
@@ -66,6 +72,9 @@ class Harness
         {
             // right let's stick these tests into a sessions serialised array
             $_SESSION['remaining_tests'] = serialize($_POST['tests']);
+
+            // get the time that we start the tests
+            $_SESSION['tests_started'] = time();
         }
 
         // can we haz remaining tests?
@@ -93,6 +102,16 @@ class Harness
 
             // and on let's test!
             $this->current_test = new TestFile(TESTS_FOLDER . $next_test . '.js');
+        }
+
+        // have we finished testing?
+        if (!isset($_SESSION['remaining_tests']) && !$this->current_test && isset($_SESSION['tests_started']))
+        {
+            // get the time we finished tests
+            $this->tests_time = time() - (int)$_SESSION['tests_started'];
+
+            // remove tests started
+            unset($_SESSION['tests_started']);
         }
 
         // has a device id been passed to us?
