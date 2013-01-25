@@ -1,7 +1,5 @@
 // create bench and suite
-var benchmark = new Benchmark({
-    'maxTime': 300
-});
+var benchmark = new Benchmark();
 var suite = new Benchmark.Suite();
 
 // ref our debug areas, a dump area to add code and log area for visual logging
