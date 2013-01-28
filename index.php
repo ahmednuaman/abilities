@@ -44,7 +44,7 @@ require_once 'harness.php';
                     </div>
                 <?php endif ?>
                 <p><a href="#" id="run-all-tests" onclick="runAllTests();">Run all the tests!</a> or select some...</p>
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                <form id="all-tests-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                     <ul>
                         <?php foreach ($harness->get_all_tests() as $test): ?>
                             <li id="test">
@@ -63,7 +63,7 @@ require_once 'harness.php';
                     function runAllTests()
                     {
                         var els = document.getElementsByTagName('input');
-                        var form = document.getElementsByTagName('form')[0];
+                        var form = document.getElementById('all-tests-form');
                         var el;
 
                         for (var i = els.length - 1; i >= 0; i--)
