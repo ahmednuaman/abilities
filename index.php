@@ -6,8 +6,6 @@ require_once 'harness.php';
 <html class="no-js">
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0" />
         <style>
             body {
                 background: #ffffff;
@@ -27,12 +25,6 @@ require_once 'harness.php';
                 <h3>Log</h3>
                 <pre id="log-area"></pre>
                 <div id="dump-area"></div>
-                <script>
-                    var testData = {
-                        name: '<?php echo $harness->current_test->name; ?>',
-                        description: '<?php echo $harness->current_test->description; ?>'
-                    };
-                </script>
                 <script src="assets/js/vendor/benchmark-1.0.0.js"></script>
                 <script src="assets/js/helpers.js?x=<?php echo $time; ?>"></script>
                 <script src="assets/js/config.js?x=<?php echo $time; ?>"></script>
