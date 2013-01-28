@@ -25,6 +25,12 @@ require_once 'harness.php';
                 <h3>Log</h3>
                 <pre id="log-area"></pre>
                 <div id="dump-area"></div>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <input type="hidden" name="name" value="<?php echo $harness->current_test->name; ?>">
+                    <input type="hidden" name="type" value="<?php echo $harness->current_test->type; ?>">
+                    <input type="hidden" name="description" value="<?php echo $harness->current_test->description; ?>">
+                    <input type="hidden" name="value" id="test-result-value" value="">
+                </form>
                 <script src="assets/js/vendor/benchmark-1.0.0.js"></script>
                 <script src="assets/js/helpers.js?x=<?php echo $time; ?>"></script>
                 <script src="assets/js/config.js?x=<?php echo $time; ?>"></script>
