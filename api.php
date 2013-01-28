@@ -12,20 +12,6 @@ class API
     private $_con;
 
     /**
-     * Constructor
-     *
-     * @access public
-     */
-    public function __construct()
-    {
-        // let's connected to our db
-        $this->_connect();
-
-        // handle our request
-        $this->_handle_request();
-    }
-
-    /**
      * Adds a test result into our DB
      *
      * @access private
@@ -58,6 +44,9 @@ class API
      */
     private function _add_results($results)
     {
+        // connect to el db
+        $this->_connect();
+
         // try and get the device's id and user agent
         $device = $this->_con->real_escape_string($_SESSION['device_id']);
         $user_agent = $this->_con->real_escape_string($_SERVER['HTTP_USER_AGENT']);
@@ -134,9 +123,9 @@ class API
      * Handles our request to the API
      * Currently you can only POST test results
      *
-     * @access private
+     * @access public
      */
-    private function _handle_request()
+    public function handle_request()
     {
         // check for post
         if (empty($_POST))
@@ -158,11 +147,3 @@ class API
         }
     }
 }
-// start a session
-session_start();
-
-// get our config
-require_once 'config.php';
-
-// init it
-new API();
