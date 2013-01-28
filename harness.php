@@ -84,14 +84,14 @@ class Harness
             $_SESSION['tests_started'] = time();
         }
 
-        // have we got some results
-        if (isset($_POST['results']))
+        // have we got some results?
+        if (isset($_POST['result']))
         {
             // load our api
             $this->_load_api();
 
             // handle el request
-            $this->_api->add_result($_POST['results']);
+            $this->_api->add_result($_POST['result']);
         }
 
         // can we haz remaining tests?
@@ -192,6 +192,12 @@ class TestFile
     public $description;
 
     /**
+     * @var string the type of test
+     * @access public
+     */
+    public $type;
+
+    /**
      * @var string the path to the test js file
      * @access public
      */
@@ -232,14 +238,14 @@ class TestFile
         // read the first line
         fgets($handler);
 
-        // now the second line
-        $line = fgets($handler);
+        // set the description
+        $this->description = trim(htmlspecialchars(str_replace('description: ', '', fgets($handler))));
+
+        // set the type
+        $this->type = trim(htmlspecialchars(str_replace('type: ', '', fgets($handler))));
 
         // close the file
         fclose($handler);
-
-        // set the description
-        $this->description = trim(htmlspecialchars(str_replace('description: ', '', $line)));
     }
 }
 
