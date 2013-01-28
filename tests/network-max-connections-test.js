@@ -29,7 +29,9 @@ function loadImage(url)
             // we're done
             helpers.log('All images loaded, ' + connections + ' connections are concurrent');
 
-            helpers.save('{"connections":' + connections + '}');
+            helpers.save(
+                helpers.parseNumberData('connections', connections);
+            );
         }
     };
 

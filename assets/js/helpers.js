@@ -127,5 +127,11 @@ var helpers = {
         str += '}}';
 
         return str;
+    },
+
+    // a function that converts the number test data into a json string
+    parseNumberData: function (name, number)
+    {
+        return '{"' + name + '": ' + number + '}';
     }
 };
