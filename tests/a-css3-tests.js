@@ -200,8 +200,6 @@ description: All the css3tests in one sexy bunch; simply outputs the result of w
     var results = [ ];
 
     var Test = function (tests, spec, title) {
-        var scores = [ ];
-        var score;
         this.tests = tests;
         this.id = spec;
         this.title = title;
@@ -210,23 +208,15 @@ description: All the css3tests in one sexy bunch; simply outputs the result of w
 
         // Perform tests
         for(var id in Test.groups) {
-            score = this.group(id, Test.groups[id]);
-
-            if (score)
-            {
-                scores.push(score);
-            }
+            this.group(id, Test.groups[id]);
         }
 
         helpers.log('Tests: ' + this.title + ' (' + this.id + ') = ' + this.score);
-
-        results.push('"' + this.id + '":{"name":"' + this.title + '", "scores":{' + scores.join(',') + '}}');
     }
 
     Test.prototype = {
         group: function(what, testCallback) {
             var thisSection, theseTests = this.tests[what];
-            var scores = [ ];
 
             for(var feature in theseTests) {
                 if(feature === 'properties') {
@@ -247,15 +237,16 @@ description: All the css3tests in one sexy bunch; simply outputs the result of w
                     }
                     else { success = +!!results }
 
-                    scores.push('"' + (feature + ' = ' + test).replace(/"/g, '\\"') + '":' + (note ? '{"success":' + !!success + ', "note":"' + note + '"}' : !!success ));
+                    results.push({
+                        name: (feature + ' = ' + test),
+                        success: !!success
+                    });
 
                     passed += +success;
                 }
 
                 this.score.update({passed: passed, total: tests.length });
             }
-
-            return scores.join(',');
         }
     }
 
@@ -374,7 +365,9 @@ description: All the css3tests in one sexy bunch; simply outputs the result of w
             }
             else {
                 // Done!
-                helpers.save('{' + results.join(',') + '}');
+                helpers.save(
+                    helpers.parseBooleanData(results)
+                );
             }
         })();
     }

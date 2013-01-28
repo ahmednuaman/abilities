@@ -106,5 +106,26 @@ var helpers = {
         str += '}}';
 
         return str;
+    },
+
+    // a function that converts the boolean test data into a json string
+    parseBooleanData: function(booleans)
+    {
+        var tests = [ ];
+        var str = '{"boolean":{';
+        var test;
+
+        for (var i = booleans.length - 1; i >= 0; i--)
+        {
+            test = booleans[i];
+
+            tests.push('"' + test.name.replace(/"/g, '\\"') + '":' + test.value);
+        }
+
+        str += tests.join(',');
+
+        str += '}}';
+
+        return str;
     }
 };
