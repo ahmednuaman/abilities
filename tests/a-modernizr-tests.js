@@ -39,11 +39,16 @@ description: All the Modernizr tests in one; the resulting value is a string of 
 
                 has = item.indexOf('no-') === -1;
 
-                arr.push('"' + item.replace('no-', '') + '":' + has);
+                arr.push({
+                    name: item.replace('no-', ''),
+                    value: has
+                });
             }
 
             // save the class names
-            helpers.save('{' + arr.join(',') + '}');
+            helpers.save(
+                helpers.parseBooleanData(arr)
+            );
 
             return;
         }

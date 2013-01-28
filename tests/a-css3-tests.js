@@ -239,7 +239,7 @@ description: All the css3tests in one sexy bunch; simply outputs the result of w
 
                     results.push({
                         name: (feature + ' = ' + test),
-                        success: !!success
+                        value: !!success
                     });
 
                     passed += +success;
