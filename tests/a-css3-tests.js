@@ -197,7 +197,7 @@ description: All the css3tests in one sexy bunch; simply outputs the result of w
 
     var mainScore = new Score();
 
-    var results = [ ];
+    var testResults = [ ];
 
     var Test = function (tests, spec, title) {
         this.tests = tests;
@@ -237,7 +237,7 @@ description: All the css3tests in one sexy bunch; simply outputs the result of w
                     }
                     else { success = +!!results }
 
-                    results.push({
+                    testResults.push({
                         name: (feature + ' = ' + test),
                         value: !!success
                     });
@@ -366,7 +366,7 @@ description: All the css3tests in one sexy bunch; simply outputs the result of w
             else {
                 // Done!
                 helpers.save(
-                    helpers.parseBooleanData(results)
+                    helpers.parseBooleanData(testResults)
                 );
             }
         })();
