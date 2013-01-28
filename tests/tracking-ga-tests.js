@@ -1,5 +1,6 @@
 /*
 description: A test to check to see which tracking system is fastest, in this case we are testing standard GA
+type: benchmark
 */
 
 var _gaq = _gaq || [];

@@ -1,5 +1,6 @@
 /*
 description: A test to check to see which tracking system is fastest, in this case we are testing non-JS GA
+type: benchmark
 */
 
 var url = 'http://www.google-analytics.com/__utm.gif?' +

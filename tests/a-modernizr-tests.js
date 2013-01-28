@@ -1,5 +1,6 @@
 /*
 description: All the Modernizr tests in one; the resulting value is a string of the classes appended to the document for each of the Modernizr tests ran
+type: boolean
 */
 
 // we're not actually gonna use benchmark here, we're just gonna load Modernizr and save the classes

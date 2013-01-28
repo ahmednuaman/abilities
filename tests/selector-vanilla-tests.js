@@ -1,5 +1,6 @@
 /*
 description: A test to see if vanilla selectors are the fastest; we are gonna get all the tags, then all the classes then one id
+type: benchmark
 */
 
 suite

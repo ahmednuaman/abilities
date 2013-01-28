@@ -1,5 +1,6 @@
 /*
 description: A test to see what is the max number of concurrent connections to different hosts a browser can handle
+type: number
 */
 
 var connections = 0;

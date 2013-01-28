@@ -1,5 +1,6 @@
 /*
 description: A test to check latency of loading resources to see which hosting service has the fastest response time
+type: benchmark
 */
 
 function loadImage(url, dfd)

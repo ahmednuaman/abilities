@@ -1,5 +1,6 @@
 /*
 description: A test case to see which type of image is fastest to resize
+type: benchmark
 */
 
 var baseURL = 'assets/img/';

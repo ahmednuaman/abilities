@@ -1,5 +1,6 @@
 /*
 description: All the css3tests in one sexy bunch; simply outputs the result of what is and what is not supported
+type: boolean
 */
 
 // we're not actually gonna use benchmark here, we're just gonna load Modernizr and save the classes

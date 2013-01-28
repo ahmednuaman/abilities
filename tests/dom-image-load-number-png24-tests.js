@@ -1,5 +1,6 @@
 /*
 description: A test case to see what is the optimum amount of PNG24 to load at any one time
+type: benchmark
 */
 
 helpers.loadScript('assets/js/vendor/q.js');
