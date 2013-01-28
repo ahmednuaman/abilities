@@ -104,7 +104,7 @@ class API
         $device_id = $this->_get_device_id($device, $user_agent);
 
         // loop through our results and add them to the db
-        foreach ($result as $value)
+        foreach ($result as $key => $value)
         {
             $result[$key] = $this->_con->real_escape_string($value);
         }
