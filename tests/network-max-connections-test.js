@@ -30,7 +30,7 @@ function loadImage(url)
             helpers.log('All images loaded, ' + connections + ' connections are concurrent');
 
             helpers.save(
-                helpers.parseNumberData('connections', connections);
+                helpers.parseNumberData('connections', connections)
             );
         }
     };
