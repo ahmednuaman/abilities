@@ -12,7 +12,7 @@ CREATE TABLE `test_result` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `device_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `type` int(11) NOT NULL,
+  `type` varchar(50) NOT NULL DEFAULT '',
   `description` text NOT NULL,
   `value` longtext NOT NULL,
   `tested` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

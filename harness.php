@@ -133,7 +133,14 @@ class Harness
                 $this->_load_api();
             }
 
-            $this->_api->
+            $this->_api->add_results(array(
+                array(
+                    'name' => 'tests_time',
+                    'description' => 'The total time it took to complete the last batch of tests',
+                    'type' => TestResultType.NUMBER,
+                    'value' => '{"total_tests_time":' . $this->tests_time . '}'
+                )
+            ));
 
             // remove tests started
             unset($_SESSION['tests_started']);
@@ -234,6 +241,17 @@ class TestFile
         // set the description
         $this->description = trim(htmlspecialchars(str_replace('description: ', '', $line)));
     }
+}
+
+/**
+* TestResultType
+* A static container for the type of tests results we're gonna haz
+*/
+class TestResultType
+{
+    const BENCHMARK = 'benchmark';
+    const BOOLEAN = 'boolean';
+    const NUMBER = 'number';
 }
 
 // start a session

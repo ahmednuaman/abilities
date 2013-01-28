@@ -23,11 +23,11 @@ class API
      *
      * @return int the insert ID of the test result entry
      */
-    private function _add_result($device_id, $name, $description, $value)
+    private function _add_result($device_id, $name, $type, $description, $value)
     {
         // run the insert query
-        $query = $this->_con->query('INSERT INTO ' . MYSQL_TABLE_TEST_RESULT . ' (`device_id`, `name`, `description`, `value`) ' .
-            'VALUES ("' . $device_id . '", "' . $name . '", "' . $description . '", "' . $value . '")');
+        $query = $this->_con->query('INSERT INTO ' . MYSQL_TABLE_TEST_RESULT . ' (`device_id`, `name`, `type`, `description`, `value`) ' .
+            'VALUES ("' . $device_id . '", "' . $name . '", "' . $type . '", "' . $description . '", "' . $value . '")');
 
         // return the insert ID, just for lulz
         return $this->_con->insert_id;
@@ -112,7 +112,7 @@ class API
                 $result[$key] = $this->_con->real_escape_string($value);
             }
 
-            $this->_add_result($device_id, $result['name'], $result['description'], $result['value']);
+            $this->_add_result($device_id, $result['name'], $result['type'], $result['description'], $result['value']);
         }
     }
 }
