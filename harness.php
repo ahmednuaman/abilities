@@ -6,6 +6,13 @@
 class Harness
 {
     /**
+     * @var API a reference to our API
+     * @access private
+     */
+
+    private $_api;
+
+    /**
      * @var boolean a var to check if we're testing at the moment or not
      * @access public
      */
@@ -77,6 +84,16 @@ class Harness
             $_SESSION['tests_started'] = time();
         }
 
+        // have we got some results
+        if (isset($_POST['results']))
+        {
+            // load our api
+            $this->_load_api();
+
+            // handle el request
+            $this->_api->add_results($_POST['results']);
+        }
+
         // can we haz remaining tests?
         if (isset($_SESSION['remaining_tests']))
         {
@@ -110,6 +127,14 @@ class Harness
             // get the time we finished tests
             $this->tests_time = time() - (int)$_SESSION['tests_started'];
 
+            // save it to the api
+            if (!$this->_api)
+            {
+                $this->_load_api();
+            }
+
+            $this->_api->
+
             // remove tests started
             unset($_SESSION['tests_started']);
         }
@@ -124,6 +149,20 @@ class Harness
         {
             $_SESSION['device_id'] = 'fake-' . time();
         }
+    }
+
+    /**
+     * Loads a reference to the API
+     *
+     * @access private
+     */
+    private function _load_api()
+    {
+        // get our api
+        require_once 'api.php';
+
+        // init it
+        $this->_api = new API();
     }
 }
 

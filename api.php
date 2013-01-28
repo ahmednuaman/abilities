@@ -34,43 +34,6 @@ class API
     }
 
     /**
-     * Adds test results into our DB
-     * It also checks to see if a device has been registered yet
-     * This method accepts an array
-     *
-     * @access private
-     *
-     * @param array $results an array of results
-     */
-    private function _add_results($results)
-    {
-        // connect to el db
-        $this->_connect();
-
-        // try and get the device's id and user agent
-        $device = $this->_con->real_escape_string($_SESSION['device_id']);
-        $user_agent = $this->_con->real_escape_string($_SERVER['HTTP_USER_AGENT']);
-
-        // check our db to see if this device exists
-        $device_id = $this->_get_device_id($device, $user_agent);
-
-        // loop through our results and add them to the db
-        foreach ($results as $result)
-        {
-            // sanatise the result
-            foreach ($result as $key => $value)
-            {
-                $result[$key] = $this->_con->real_escape_string($value);
-            }
-
-            $this->_add_result($device_id, $result['name'], $result['description'], $result['value']);
-        }
-
-        // return the device id as a response as a valid JSON string
-        echo '"' . $device . '"';
-    }
-
-    /**
      * Connects to our MySQL database
      * Uses the config.php file required before this class is init'd
      *
@@ -120,30 +83,36 @@ class API
     }
 
     /**
-     * Handles our request to the API
-     * Currently you can only POST test results
+     * Adds test results into our DB
+     * It also checks to see if a device has been registered yet
+     * This method accepts an array
      *
      * @access public
+     *
+     * @param array $results an array of results
      */
-    public function handle_request()
+    public function add_results($results)
     {
-        // check for post
-        if (empty($_POST))
-        {
-            // gracefully fail
-            throw new BadMethodCallException('$_GET requests not implemeted yet');
-        }
+        // connect to el db
+        $this->_connect();
 
-        // handle our request, assuming all the requested vars are present
-        if (isset($_POST['results']))
+        // try and get the device's id and user agent
+        $device = $this->_con->real_escape_string($_SESSION['device_id']);
+        $user_agent = $this->_con->real_escape_string($_SERVER['HTTP_USER_AGENT']);
+
+        // check our db to see if this device exists
+        $device_id = $this->_get_device_id($device, $user_agent);
+
+        // loop through our results and add them to the db
+        foreach ($results as $result)
         {
-            // stick these in our db
-            $this->_add_results($_POST['results']);
-        }
-        else
-        {
-            // bad call
-            throw new UnexpectedValueException('Some $_POST requests seem to be missing');
+            // sanatise the result
+            foreach ($result as $key => $value)
+            {
+                $result[$key] = $this->_con->real_escape_string($value);
+            }
+
+            $this->_add_result($device_id, $result['name'], $result['description'], $result['value']);
         }
     }
 }
