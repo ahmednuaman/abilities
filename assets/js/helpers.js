@@ -45,58 +45,14 @@ var helpers = {
     // our save message, loads jquery async'ly if it's not available and then saves the data to the api relative to a device id
     save: function(result)
     {
-        var refresh = !(arguments[1] === false);
-        var xhr;
+        var form = document.getElementById('test-form');
+        var input = document.getElementById('test-result-value');
 
         helpers.log('Saving result: ' + result);
 
-        if ("ActiveXObject" in window)
-        {
-            try
-            {
-                xhr = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            catch(e)
-            {
-                helpers.log('No XHR found!');
+        input.value = result;
 
-                return;
-            }
-        }
-        else
-        {
-            xhr = new XMLHttpRequest();
-        }
-
-        xhr.onreadystatechange = function()
-        {
-            if (xhr.readyState === 4)
-            {
-                helpers.log('Saved data, going to next test, if any, in 5 seconds...');
-
-                if (refresh)
-                {
-                    setTimeout(helpers.next, 5000);
-                }
-            }
-        };
-
-        xhr.open('POST', 'api.php', true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-        xhr.send(
-            'results[0][name]=' + encodeURIComponent(testData.name) +
-            '&results[0][description]=' + encodeURIComponent(testData.description) +
-            '&results[0][value]=' + encodeURIComponent(result)
-        );
-    },
-
-    // a simple function that simply reloads the page after our tests
-    next: function()
-    {
-        helpers.log('Loading...');
-
-        window.location.href = window.location.href;
+        form.submit();
     },
 
     // a simple function that creates a cookie
