@@ -89,9 +89,9 @@ class API
      *
      * @access public
      *
-     * @param array $results an array of results
+     * @param array $result an array of the result
      */
-    public function add_results($results)
+    public function add_result($result)
     {
         // connect to el db
         $this->_connect();
@@ -104,15 +104,12 @@ class API
         $device_id = $this->_get_device_id($device, $user_agent);
 
         // loop through our results and add them to the db
-        foreach ($results as $result)
+        foreach ($result as $value)
         {
-            // sanatise the result
-            foreach ($result as $key => $value)
-            {
-                $result[$key] = $this->_con->real_escape_string($value);
-            }
-
-            $this->_add_result($device_id, $result['name'], $result['type'], $result['description'], $result['value']);
+            $result[$key] = $this->_con->real_escape_string($value);
         }
+
+        // add them!
+        $this->_add_result($device_id, $result['name'], $result['type'], $result['description'], $result['value']);
     }
 }

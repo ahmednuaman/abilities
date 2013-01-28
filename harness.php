@@ -91,7 +91,7 @@ class Harness
             $this->_load_api();
 
             // handle el request
-            $this->_api->add_results($_POST['results']);
+            $this->_api->add_result($_POST['results']);
         }
 
         // can we haz remaining tests?
@@ -133,14 +133,14 @@ class Harness
                 $this->_load_api();
             }
 
-            $this->_api->add_results(array(
+            $this->_api->add_result(
                 array(
                     'name' => 'tests_time',
                     'description' => 'The total time it took to complete the last batch of tests',
                     'type' => TestResultType.NUMBER,
                     'value' => '{"total_tests_time":' . $this->tests_time . '}'
                 )
-            ));
+            );
 
             // remove tests started
             unset($_SESSION['tests_started']);
