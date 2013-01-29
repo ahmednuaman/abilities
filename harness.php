@@ -149,6 +149,12 @@ class Harness
         // has a device id been passed to us?
         if (isset($_POST['device_id']))
         {
+            // check if the device_id has been urlencoded
+            if (strstr($_POST['device_id'], '%20'))
+            {
+                $_POST['device_id'] = rawurldecode($_POST['device_id']);
+            }
+
             $_SESSION['device_id'] = $_POST['device_id'];
         }
         // otherwise if a device_id isn't sent and one hasn't been assigned, let's fake one
