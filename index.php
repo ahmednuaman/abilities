@@ -10,7 +10,7 @@ require_once 'harness.php';
         <title>Test harness</title>
     </head>
     <body>
-        <div id="container">
+        <div class="container">
             <?php if ($harness->is_testing): ?>
                 <?php
                 // set el time
@@ -76,13 +76,13 @@ require_once 'harness.php';
 
                     link.focus();
                 </script>
-                <?php if (isset($_POST['autorun'])): ?>
+                <?php /*if (isset($_POST['autorun'])): ?>
                     <?php if ($_POST['autorun'] == '1'): ?>
                         <script>
                             runAllTests();
                         </script>
-                    <?php endif ?>
-                <?php endif ?>
+                    <?php endif; ?>
+                <?php endif;*/ ?>
             <?php endif; ?>
         </div>
     </body>
