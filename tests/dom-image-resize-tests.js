@@ -1,6 +1,7 @@
 /*
 description: A test case to see which type of image is fastest to resize
 type: benchmark
+warnings: This test contains lots of flashing images and may not be suitable for those who suffer from epilepsy
 */
 
 var baseURL = 'assets/img/';

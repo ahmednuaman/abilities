@@ -30,6 +30,12 @@ require_once 'harness.php';
                     $time = time();
                     ?>
                     <div class="span8">
+                        <?php if ($harness->current_test->warnings): ?>
+                            <div class="alert alert-block alert-warning">
+                                <span class="label label-warning">Warning!</span>
+                                <?php echo $harness->current_test->warnings; ?>
+                            </div>
+                        <?php endif; ?>
                         <div class="alert alert-block alert-info">
                             <?php echo $harness->current_test->description; ?>
                         </div>
@@ -45,6 +51,7 @@ require_once 'harness.php';
                 <?php else: ?>
                     <div class="span8">
                         <?php if ($harness->tests_time): ?>
+                            <br />
                             <div class="alert alert-block alert-success">
                                 <h4>Tests were successfully run!</h4>
                                 Tests completed in <?php echo strftime('%M:%S', $harness->tests_time); ?>

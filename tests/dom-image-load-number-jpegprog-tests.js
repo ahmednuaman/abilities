@@ -1,6 +1,7 @@
 /*
 description: A test case to see what is the optimum amount of JPEG progressive to load at any one time
 type: benchmark
+warnings: This test contains lots of flashing images and may not be suitable for those who suffer from epilepsy
 */
 
 helpers.loadScript('assets/js/vendor/q.js');
