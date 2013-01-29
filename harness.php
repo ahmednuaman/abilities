@@ -204,6 +204,12 @@ class TestFile
     public $type;
 
     /**
+     * @var string any warnings that this test has
+     * @access public
+     */
+    public $warnings;
+
+    /**
      * @var string the path to the test js file
      * @access public
      */
@@ -225,18 +231,18 @@ class TestFile
         // set the path
         $this->path = $file;
 
-        // get the description
-        $this->_get_description($file);
+        // get the info
+        $this->_get_info($file);
     }
 
     /**
-     * Get the file's description
+     * Get the file's info
      *
      * @access private
      *
      * @param string $file the path to the file
      */
-    private function _get_description($file)
+    private function _get_info($file)
     {
         // open the file
         $handler = fopen($file, 'r');
@@ -245,13 +251,36 @@ class TestFile
         fgets($handler);
 
         // set the description
-        $this->description = trim(htmlspecialchars(str_replace('description: ', '', fgets($handler))));
+        $this->description = $this->_extract('description', fgets($handler));
 
         // set the type
-        $this->type = trim(htmlspecialchars(str_replace('type: ', '', fgets($handler))));
+        $this->type = $this->_extract('type', fgets($handler));
+
+        // check to see if there are any warnings
+        $warnings = fgets($handler);
+
+        if (strpos($warnings, 'warnings: ') === 0)
+        {
+            $this->warnings = $this->_extract('warnings', $warnings);
+        }
 
         // close the file
         fclose($handler);
+    }
+
+    /**
+     * Extracts info from the file
+     *
+     * @access private
+     *
+     * @param string $heading the heading
+     * @param string $line the line to extract data from
+     *
+     * @return string the extracted line
+     */
+    private function _extract($heading, $line)
+    {
+        return trim(htmlspecialchars(str_replace($heading . ': ', '', $line)));
     }
 }
 
