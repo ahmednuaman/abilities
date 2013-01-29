@@ -16,15 +16,13 @@ require_once 'harness.php';
             </div>
         </div>
         <div class="container-fluid">
-            <div class="page-header">
-                <h1>
-                    <?php if ($harness->is_testing): ?>
-                        Running test <small><?php echo $harness->current_test->name; ?></small>
-                    <?php else: ?>
-                        Abilities <small>A stressful test harness</small>
-                    <?php endif; ?>
-                </h1>
-            </div>
+            <?php if ($harness->is_testing): ?>
+                <div class="page-header">
+                    <h1>
+                        <?php echo $harness->current_test->name; ?>
+                    </h1>
+                </div>
+            <?php endif; ?>
             <div class="row-fluid">
                 <?php if ($harness->is_testing): ?>
                     <?php
@@ -33,7 +31,6 @@ require_once 'harness.php';
                     ?>
                     <div class="span8">
                         <div class="alert alert-block alert-info">
-                            <h4>This test is...</h4>
                             <?php echo $harness->current_test->description; ?>
                         </div>
                         <pre id="log-area"></pre>
