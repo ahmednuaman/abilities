@@ -52,7 +52,9 @@ var helpers = {
 
         input.value = result;
 
-        form.submit();
+        setTimeout(function () {
+            form.submit();
+        }, 2000);
     },
 
     // a simple function that creates a cookie
