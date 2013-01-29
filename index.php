@@ -19,7 +19,7 @@ require_once 'harness.php';
             <div class="page-header">
                 <h1>
                     <?php if ($harness->is_testing): ?>
-                        <?php echo $harness->current_test->name; ?> <small>Currently running</small>
+                        <?php echo $harness->current_test->name; ?> <small><?php echo $harness->current_test->description; ?></small>
                     <?php else: ?>
                         Abilities
                             <small>
@@ -39,7 +39,6 @@ require_once 'harness.php';
                     $time = time();
                     ?>
                     <div class="span8">
-                        <p><?php echo $harness->current_test->description; ?></p>
                         <h3>Log</h3>
                         <pre id="log-area"></pre>
                         <div id="dump-area"></div>
@@ -52,7 +51,7 @@ require_once 'harness.php';
                     </div>
                 <?php else: ?>
                     <div class="span8">
-                        <p><a href="#" id="run-all-tests">Run all the tests!</a> or select some...</p>
+                        <h3><a href="#" id="run-all-tests">Run all the tests!</a> or select some...</h3>
                         <form id="all-tests-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                             <ul>
                                 <?php foreach ($harness->get_all_tests() as $test): ?>
@@ -64,7 +63,7 @@ require_once 'harness.php';
                                     </li>
                                  <?php endforeach; ?>
                             </ul>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-block btn-large btn-primary">
                                 Run tests
                             </button>
                         </form>
