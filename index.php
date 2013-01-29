@@ -19,16 +19,9 @@ require_once 'harness.php';
             <div class="page-header">
                 <h1>
                     <?php if ($harness->is_testing): ?>
-                        <?php echo $harness->current_test->name; ?> <small><?php echo $harness->current_test->description; ?></small>
+                        Running test <small><?php echo $harness->current_test->name; ?></small>
                     <?php else: ?>
-                        Abilities
-                            <small>
-                                <?php if ($harness->tests_time): ?>
-                                    Tests completed in <?php echo strftime('%M:%S', $harness->tests_time); ?>
-                                <?php else: ?>
-                                    A stressful test harness
-                                <?php endif; ?>
-                            </small>
+                        Abilities <small>A stressful test harness</small>
                     <?php endif; ?>
                 </h1>
             </div>
@@ -39,7 +32,10 @@ require_once 'harness.php';
                     $time = time();
                     ?>
                     <div class="span8">
-                        <h3>Log</h3>
+                        <div class="alert alert-block alert-info">
+                            <h4>This test is...</h4>
+                            <?php echo $harness->current_test->description; ?>
+                        </div>
                         <pre id="log-area"></pre>
                         <div id="dump-area"></div>
                         <form id="test-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
@@ -51,6 +47,12 @@ require_once 'harness.php';
                     </div>
                 <?php else: ?>
                     <div class="span8">
+                        <?php if ($harness->tests_time): ?>
+                            <div class="alert alert-block alert-success">
+                                <h4>Tests were successfully run!</h4>
+                                Tests completed in <?php echo strftime('%M:%S', $harness->tests_time); ?>
+                            </div>
+                        <?php endif; ?>
                         <h3><a href="#" id="run-all-tests">Run all the tests!</a> or select some...</h3>
                         <form id="all-tests-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                             <ul>
