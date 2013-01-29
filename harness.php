@@ -126,7 +126,7 @@ class Harness
             }
 
             // and on let's test!
-            $this->current_test = new TestFile(TESTS_FOLDER . $next_test . '.js');
+            $this->current_test = new TestFile($next_test);
         }
 
         // have we finished testing?
