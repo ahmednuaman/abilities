@@ -1,1 +1,10 @@
 @import 'bootstrap.min.css';
+.tab-content .tab-page {
+  display: none;
+}
+.tab-content .tab-page.active {
+  display: block;
+}
+.title {
+  text-transform: capitalize;
+}

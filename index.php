@@ -60,16 +60,31 @@ require_once 'harness.php';
                         <?php endif; ?>
                         <h3><a href="#" id="run-all-tests">Run all the tests!</a> or select some...</h3>
                         <form id="all-tests-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                            <ul>
-                                <?php foreach ($harness->get_all_tests() as $test): ?>
-                                    <li id="test">
-                                        <label>
-                                            <input type="checkbox" name="tests[]" value="<?php echo $test->name; ?>">
-                                            <?php echo $test->name; ?>: <?php echo $test->description; ?>
-                                        </label>
+                            <ul class="nav nav-tabs">
+                                <?php $i = 0; ?>
+                                <?php foreach ($harness->get_all_tests() as $folder => $tests): ?>
+                                    <li class="title <?php echo $i === 0 ? 'active' : ''; ?>">
+                                        <a href="#tab-<?php echo $folder; ?>">
+                                            <?php echo $folder; ?>
+                                        </a>
                                     </li>
-                                 <?php endforeach; ?>
+                                 <?php $i++; endforeach; ?>
                             </ul>
+                            <div class="tab-content">
+                                <?php $i = 0; ?>
+                                <?php foreach ($harness->get_all_tests() as $folder => $tests): ?>
+                                    <div id="tab-<?php echo $folder; ?>" class="tab-page <?php echo $i === 0 ? 'active' : ''; ?>">
+                                        <?php foreach ($tests as $test): ?>
+                                            <label>
+                                                <input type="checkbox" name="tests[]" value="<?php echo $test->path; ?>">
+                                                <strong><?php echo $test->name; ?></strong>: <?php echo $test->description; ?>
+                                            </label>
+                                            <br>
+                                        <?php endforeach ?>
+                                    </div>
+                                 <?php $i++; endforeach; ?>
+                            </div>
+                            <br>
                             <button type="submit" class="btn btn-block btn-large btn-primary">
                                 Run tests
                             </button>

@@ -54,13 +54,21 @@ class Harness
         $tests = array();
 
         // read all the files in the tests folder
-        foreach (scandir(TESTS_FOLDER) as $file)
+        foreach (scandir(TESTS_FOLDER) as $folder)
         {
-            $file = TESTS_FOLDER . $file;
-
-            if (pathinfo($file, PATHINFO_EXTENSION) === 'js')
+            if ($folder !== '.' && $folder !== '..' && is_dir(TESTS_FOLDER . $folder))
             {
-                array_push($tests, new TestFile($file));
+                $tests[$folder] = array();
+
+                foreach (scandir(TESTS_FOLDER . $folder) as $file)
+                {
+                    $file = TESTS_FOLDER . $folder . '/' . $file;
+
+                    if (pathinfo($file, PATHINFO_EXTENSION) === 'js')
+                    {
+                        array_push($tests[$folder], new TestFile($file));
+                    }
+                }
             }
         }
 
