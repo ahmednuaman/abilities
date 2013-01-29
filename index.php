@@ -71,7 +71,12 @@ require_once 'harness.php';
                 <?php endif; ?>
                 <div class="span4 device-info">
                     <h3>Device information</h3>
-
+                    <dl>
+                        <dt>Device Id</dt>
+                        <dd><?php echo $_SESSION['device_id']; ?></dd>
+                        <dt>User Agent</dt>
+                        <dd><?php echo $_SERVER['HTTP_USER_AGENT']; ?></dd>
+                    </dl>
                 </div>
             </div>
         </div>
