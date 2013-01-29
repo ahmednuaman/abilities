@@ -45,10 +45,13 @@ var helpers = {
     // our save message, loads jquery async'ly if it's not available and then saves the data to the api relative to a device id
     save: function(result)
     {
+        var alert = document.getElementById('test-complete');
         var form = document.getElementById('test-form');
         var input = document.getElementById('test-result-value');
 
         helpers.log('Saving result: ' + result);
+
+        alert.style.display = '';
 
         input.value = result;
 

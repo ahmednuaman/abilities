@@ -21,6 +21,7 @@ require_once 'harness.php';
                     <h1>
                         <?php echo $harness->current_test->name; ?>
                     </h1>
+                    <?php echo $harness->current_test->description; ?>
                 </div>
             <?php endif; ?>
             <div class="row-fluid">
@@ -30,15 +31,15 @@ require_once 'harness.php';
                     $time = time();
                     ?>
                     <div class="span8">
+                        <div id="test-complete" class="alert alert-block alert-success" style="display: none;">
+                            <h4>Test successfully completed!</h4>
+                        </div>
                         <?php if ($harness->current_test->warnings): ?>
                             <div class="alert alert-block alert-warning">
                                 <span class="label label-warning">Warning!</span>
                                 <?php echo $harness->current_test->warnings; ?>
                             </div>
                         <?php endif; ?>
-                        <div class="alert alert-block alert-info">
-                            <?php echo $harness->current_test->description; ?>
-                        </div>
                         <pre id="log-area"></pre>
                         <div id="dump-area"></div>
                         <form id="test-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
