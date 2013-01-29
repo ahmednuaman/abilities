@@ -5,12 +5,8 @@ require_once 'harness.php';
 <!DOCTYPE html>
 <html class="no-js">
     <head>
-        <meta charset="utf-8" />
-        <style>
-            body {
-                background: #ffffff;
-            }
-        </style>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="assets/css/styles.css">
         <title>Test harness</title>
     </head>
     <body>
