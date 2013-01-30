@@ -76,7 +76,7 @@ require_once 'harness.php';
                                         <li class="title <?php echo $i === 0 ? 'active' : ''; ?>">
                                             <?php $key_right = Helper::find_in_array($folder_names, $i + 1); ?>
                                             <?php $key_left = Helper::find_in_array($folder_names, $i - 1); ?>
-                                            <a href="#tab-<?php echo $folder; ?>" id="link-tab-<?php echo $folder; ?>" class="key-handler key-down:dynamic-#tab-container>.active>label:first-of-type key-up:link-run-all-tests key-right:link-tab-<?php echo $key_right; ?> key-left:link-tab-<?php echo $key_left; ?>">
+                                            <a href="#tab-<?php echo $folder; ?>" id="link-tab-<?php echo $folder; ?>" class="key-handler key-down:dynamic-#tab-container>.active>a:first-of-type key-up:link-run-all-tests key-right:link-tab-<?php echo $key_right; ?> key-left:link-tab-<?php echo $key_left; ?>">
                                                 <?php echo $folder; ?>
                                             </a>
                                         </li>
@@ -88,19 +88,21 @@ require_once 'harness.php';
                                         <div id="tab-<?php echo $folder; ?>" class="tab-page <?php echo $i === 0 ? 'active' : ''; ?>">
                                             <?php $tests_total = count($tests) - 1; ?>
                                             <?php foreach ($tests as $j => $test): ?>
-                                                <label>
-                                                    <?php $key_up = $j === 0 ? 'link-tab-' . $folder : 'checkbox-test-' . $folder . '-' . ($j - 1); ?>
-                                                    <?php $key_down = $j === $tests_total ? 'button-run-tests' : 'checkbox-test-' . $folder . '-' . ($j + 1); ?>
-                                                    <input id="checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" type="checkbox" name="tests[]" value="<?php echo $test->path; ?>" class="key-handler key-up:<?php echo $key_up; ?> key-down:<?php echo $key_down; ?>">
-                                                    <strong><?php echo $test->name; ?></strong>: <?php echo $test->description; ?>
-                                                </label>
+                                                <?php $key_up = $j === 0 ? 'link-tab-' . $folder : 'link-test-' . $folder . '-' . ($j - 1); ?>
+                                                <?php $key_down = $j === $tests_total ? 'button-run-tests' : 'link-test-' . $folder . '-' . ($j + 1); ?>
+                                                <a href="#checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" id="link-test-<?php echo $folder; ?>-<?php echo $j; ?>" class="key-handler key-up:<?php echo $key_up; ?> key-down:<?php echo $key_down; ?>">
+                                                    <label>
+                                                        <input id="checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" type="checkbox" name="tests[]" value="<?php echo $test->path; ?>">
+                                                        <strong><?php echo $test->name; ?></strong>: <?php echo $test->description; ?>
+                                                    </label>
+                                                </a>
                                                 <br>
                                             <?php endforeach; ?>
                                         </div>
                                      <?php $i++; endforeach; ?>
                                 </div>
                                 <br>
-                                <button id="button-run-tests" type="submit" class="btn btn-block btn-large btn-primary key-handler key-up:dynamic-#tab-container>.active>label:last-of-type key-down:link-navbar-brand">
+                                <button id="button-run-tests" type="submit" class="btn btn-block btn-large btn-primary key-handler key-up:dynamic-#tab-container>.active>a:last-of-type key-down:link-navbar-brand">
                                     Run tests
                                 </button>
                             </form>

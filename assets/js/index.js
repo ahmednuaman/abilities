@@ -1,4 +1,7 @@
 (function () {
+    var hasClassName = !!document['getElementsByClassName'] && false;
+    var hasQuerySelector = !!document['querySelector'] && false;
+
     function assignHandlers () {
         var link = document.getElementById('link-run-all-tests');
         var tabs = document.getElementById('nav-tabs-container').getElementsByTagName('a');
@@ -15,7 +18,6 @@
 
     function findKeyHandlers () {
         var className = 'key-handler';
-        var hasClassName = document['getElementsByClassName'];
         var parent = document.getElementById('container');
         var child;
         var handler;
@@ -59,7 +61,6 @@
     }
 
     function findChildCSS (selector) {
-        var hasClassName = document['getElementsByClassName'];
         var path = selector.split('>');
         var pos;
         var temp;
@@ -103,7 +104,11 @@
             };
         };
 
-        return target[0];
+        if (target['length']) {
+            target = target[0];
+        };
+
+        return target;
     }
 
     function findChildPseudo (target, pseudo) {
@@ -172,7 +177,7 @@
             if (match.indexOf('dynamic-') === 0) {
                 match = match.replace('dynamic-', '');
 
-                target = document['querySelector'] ? document.querySelector(match) : findChildCSS(match);
+                target = hasQuerySelector ? document.querySelector(match) : findChildCSS(match);
             } else {
                 target = document.getElementById(match);
             };
