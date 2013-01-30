@@ -99,7 +99,7 @@ require_once 'harness.php';
                                  <?php $i++; endforeach; ?>
                             </div>
                             <br>
-                            <button id="button-run-tests" type="submit" class="btn btn-block btn-large btn-primary">
+                            <button id="button-run-tests" type="submit" class="btn btn-block btn-large btn-primary key-up:dynamic-div.tab-page.active>label[-1]>input">
                                 Run tests
                             </button>
                         </form>
