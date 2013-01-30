@@ -58,6 +58,62 @@
         return handlers;
     }
 
+    function findChildCSS (selector) {
+        var hasClassName = document['getElementsByClassName'];
+        var path = selector.split('>');
+        var pos;
+        var temp;
+        var target;
+
+        for (var i = 0; i < path.length; i++) {
+            pos = path[i];
+
+            if (pos.indexOf('#') === 0) {
+                target = (target || document).getElementById(pos.replace('#', ''));
+            } else if (pos.indexOf('.') === 0) {
+                temp = pos.replace('.', '');
+
+                target = hasClassName ? (target || document).getElementsByClassName(temp) : findChildClasses(target || document, temp);
+            } else {
+                temp = pos.split(':');
+
+                if (target['length']) {
+                    if (target.length === 1) {
+                        target = target[0];
+                    } else {
+                        throw new Error('Cannot pass more than one target to getElementsByTagName');
+                    };
+                };
+
+                target = (target || document).getElementsByTagName(temp[0]);
+            };
+
+            if (pos.indexOf(':') !== -1 && target) {
+                if (!temp[1]) {
+                    temp = pos.split(':');
+                };
+
+                target = findChildPseudo(target, temp[1]);
+            };
+
+            temp = null;
+
+            if (!target) {
+                throw new Error('Failed to find target for query: ' + selector);
+            };
+        };
+
+        return target[0];
+    }
+
+    function findChildPseudo (target, pseudo) {
+        if (pseudo === 'first-of-type') {
+            return target[0];
+        } else if (pseudo === 'last-of-type') {
+            return target[target.length - 1];
+        };
+    }
+
     function handleHandlerKeyDown (event) {
         var target = event.currentTarget;
         var direction;
@@ -114,7 +170,9 @@
             match = matches[1];
 
             if (match.indexOf('dynamic-') === 0) {
-                target = null;
+                match = match.replace('dynamic-', '');
+
+                target = document['querySelector'] ? document.querySelector(match) : findChildCSS(match);
             } else {
                 target = document.getElementById(match);
             };

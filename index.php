@@ -76,7 +76,7 @@ require_once 'harness.php';
                                         <li class="title <?php echo $i === 0 ? 'active' : ''; ?>">
                                             <?php $key_right = Helper::find_in_array($folder_names, $i + 1); ?>
                                             <?php $key_left = Helper::find_in_array($folder_names, $i - 1); ?>
-                                            <a href="#tab-<?php echo $folder; ?>" id="link-tab-<?php echo $folder; ?>" class="key-handler key-down:dynamic-#tab-container>div.tab-page.active>label:first>input key-up:link-run-all-tests key-right:link-tab-<?php echo $key_right; ?> key-left:link-tab-<?php echo $key_left; ?>">
+                                            <a href="#tab-<?php echo $folder; ?>" id="link-tab-<?php echo $folder; ?>" class="key-handler key-down:dynamic-#tab-container>.active>label:first-of-type>input key-up:link-run-all-tests key-right:link-tab-<?php echo $key_right; ?> key-left:link-tab-<?php echo $key_left; ?>">
                                                 <?php echo $folder; ?>
                                             </a>
                                         </li>
@@ -100,7 +100,7 @@ require_once 'harness.php';
                                      <?php $i++; endforeach; ?>
                                 </div>
                                 <br>
-                                <button id="button-run-tests" type="submit" class="btn btn-block btn-large btn-primary key-handler key-up:dynamic-#tab-container>div.tab-page.active>label:last>input">
+                                <button id="button-run-tests" type="submit" class="btn btn-block btn-large btn-primary key-handler key-up:dynamic-#tab-container>.active>label:last-of-type>input key-down:link-navbar-brand">
                                     Run tests
                                 </button>
                             </form>
