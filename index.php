@@ -2,6 +2,9 @@
 // set el time
 $time = time();
 
+// get our helper
+require_once 'helper.php';
+
 // get the harness
 require_once 'harness.php';
 ?>
@@ -15,7 +18,7 @@ require_once 'harness.php';
     <body class="<?php echo $harness->is_testing ? 'testing' : 'not-testing' ?>">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
-                <a href="index.php" class="brand">Abilities</a>
+                <a href="index.php" id="link-navbar-brand" class="brand key-down:link-run-all-tests key-up:button-run-tests">Abilities</a>
             </div>
         </div>
         <div class="container-fluid">
@@ -57,13 +60,20 @@ require_once 'harness.php';
                                 Tests completed in <?php echo strftime('%M:%S', $harness->tests_time); ?>
                             </div>
                         <?php endif; ?>
-                        <h3><a href="#" id="run-all-tests">Run all the tests!</a> or select some...</h3>
+                        <?php $folders = $harness->get_all_tests(); ?>
+                        <?php $folder_names = array_keys($folders); ?>
+                        <h3>
+                            <a href="#" id="link-run-all-tests" class="key-down:link-tab-<?php echo $folder_names[0]; ?> key-up:link-navbar-brand">
+                                Run all the tests!
+                            </a>
+                            or select some...
+                        </h3>
                         <form id="all-tests-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                             <ul id="nav-tabs-container" class="nav nav-tabs">
                                 <?php $i = 0; ?>
-                                <?php foreach ($harness->get_all_tests() as $folder => $tests): ?>
+                                <?php foreach ($folders as $folder => $tests): ?>
                                     <li class="title <?php echo $i === 0 ? 'active' : ''; ?>">
-                                        <a href="#tab-<?php echo $folder; ?>">
+                                        <a href="#tab-<?php echo $folder; ?>" id="link-tab-<?php echo $folder; ?>" class="key-down:dynamic-div.tab-page>label[0]>input key-up:link-run-all-tests key-right:link-tab-<?php echo Helper::find_in_array($folder_names, $i + 1); ?> key-left:link-tab-<?php echo Helper::find_in_array($folder_names, $i - 1); ?>">
                                             <?php echo $folder; ?>
                                         </a>
                                     </li>
@@ -75,7 +85,7 @@ require_once 'harness.php';
                                     <div id="tab-<?php echo $folder; ?>" class="tab-page <?php echo $i === 0 ? 'active' : ''; ?>">
                                         <?php foreach ($tests as $test): ?>
                                             <label>
-                                                <input type="checkbox" name="tests[]" value="<?php echo $test->path; ?>">
+                                                <input id="checkbox-test-<?php echo $test->name; ?>" type="checkbox" name="tests[]" value="<?php echo $test->path; ?>">
                                                 <strong><?php echo $test->name; ?></strong>: <?php echo $test->description; ?>
                                             </label>
                                             <br>
@@ -84,7 +94,7 @@ require_once 'harness.php';
                                  <?php $i++; endforeach; ?>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-block btn-large btn-primary">
+                            <button id="button-run-tests" type="submit" class="btn btn-block btn-large btn-primary">
                                 Run tests
                             </button>
                         </form>
