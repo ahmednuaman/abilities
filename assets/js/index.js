@@ -3,7 +3,17 @@
     var hasQuerySelector = !!document['querySelector'] && false;
 
     function assignHandlers () {
+        assignHandlerRunAllTests();
+        assignHandlerTabs();
+    }
+
+    function assignHandlerRunAllTests () {
         var link = document.getElementById('link-run-all-tests');
+
+        link.onclick = runAllTests;
+    }
+
+    function assignHandlerTabs () {
         var tabs = document.getElementById('nav-tabs-container').getElementsByTagName('a');
         var tab;
 
@@ -12,8 +22,6 @@
 
             tab.onclick = tabTo;
         };
-
-        link.onclick = runAllTests;
     }
 
     function findKeyHandlers () {
@@ -209,18 +217,23 @@
     }
 
     function tabTo (event) {
-        var container = document.getElementById('tab-container');
-        var divs = container.getElementsByTagName('div');
+        var divs = document.getElementById('tab-container').getElementsByTagName('div');
+        var lis = document.getElementById('nav-tabs-container').getElementsByTagName('li');
         var href = event.currentTarget.href.split('#');
         var div;
+        var li;
 
         for (var i = divs.length - 1; i >= 0; i--) {
             div = divs[i];
+            li = lis[i];
 
-            div.className = div.className.replace(/\s?active\s?/gim, '');
+            div.className = div.className.replace(/\s?active\s?/gi, '');
+            li.className = li.className.replace(/\s?active\s?/gi, '');
         };
 
         document.getElementById(href[1]).className += ' active';
+
+        document.getElementById('nav-' + href[1]).className += ' active';
     }
 
     ready();

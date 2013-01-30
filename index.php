@@ -73,7 +73,7 @@ require_once 'harness.php';
                                 <ul id="nav-tabs-container" class="nav nav-tabs">
                                     <?php $i = 0; ?>
                                     <?php foreach ($folders as $folder => $tests): ?>
-                                        <li class="title <?php echo $i === 0 ? 'active' : ''; ?>">
+                                        <li id="nav-tab-<?php echo $folder; ?>" class="title <?php echo $i === 0 ? 'active' : ''; ?>">
                                             <?php $key_right = Helper::find_in_array($folder_names, $i + 1); ?>
                                             <?php $key_left = Helper::find_in_array($folder_names, $i - 1); ?>
                                             <a href="#tab-<?php echo $folder; ?>" id="link-tab-<?php echo $folder; ?>" class="key-handler key-down:dynamic-#tab-container>.active>a:first-of-type key-up:link-run-all-tests key-right:link-tab-<?php echo $key_right; ?> key-left:link-tab-<?php echo $key_left; ?>">
@@ -90,7 +90,7 @@ require_once 'harness.php';
                                             <?php foreach ($tests as $j => $test): ?>
                                                 <?php $key_up = $j === 0 ? 'link-tab-' . $folder : 'link-test-' . $folder . '-' . ($j - 1); ?>
                                                 <?php $key_down = $j === $tests_total ? 'button-run-tests' : 'link-test-' . $folder . '-' . ($j + 1); ?>
-                                                <a href="#checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" id="link-test-<?php echo $folder; ?>-<?php echo $j; ?>" class="key-handler key-up:<?php echo $key_up; ?> key-down:<?php echo $key_down; ?>">
+                                                <a href="#checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" id="link-test-<?php echo $folder; ?>-<?php echo $j; ?>" class="key-handler checkbox-handler key-up:<?php echo $key_up; ?> key-down:<?php echo $key_down; ?>">
                                                     <label>
                                                         <input id="checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" type="checkbox" name="tests[]" value="<?php echo $test->path; ?>">
                                                         <strong><?php echo $test->name; ?></strong>: <?php echo $test->description; ?>
