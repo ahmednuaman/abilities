@@ -15,13 +15,14 @@
 
     function findKeyHandlers () {
         var className = 'key-handler';
+        var hasClassName = document['getElementsByClassName'];
         var parent = document.getElementById('container');
         var child;
         var handler;
         var handlers;
         var len;
 
-        handlers = findChildClasses(parent, className);
+        handlers = hasClassName ? document.getElementsByClassName(className) : findChildClasses(parent, className);
 
         len = handlers.length - 1;
 
@@ -31,7 +32,7 @@
             handler.onkeydown = handleHandlerKeyDown;
         };
 
-        handlers[len].focus();
+        handlers[hasClassName ? 0 : len].focus();
     }
 
     function findChildClasses (parent, className) {
@@ -112,10 +113,8 @@
         if (matches) {
             match = matches[1];
 
-            type = match.split('-', 1);
-
-            if (type[0] === 'dynamic') {
-
+            if (match.indexOf('dynamic-') === 0) {
+                target = null;
             } else {
                 target = document.getElementById(match);
             };
