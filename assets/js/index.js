@@ -19,16 +19,19 @@
         var child;
         var handler;
         var handlers;
+        var len;
 
         handlers = findChildClasses(parent, className);
 
-        for (var i = handlers.length - 1; i >= 0; i--) {
+        len = handlers.length - 1;
+
+        for (var i = len; i >= 0; i--) {
             handler = handlers[i];
 
             handler.onkeydown = handleHandlerKeyDown;
         };
 
-        handlers[0].focus();
+        handlers[len].focus();
     }
 
     function findChildClasses (parent, className) {
@@ -65,21 +68,25 @@
         switch (event.keyCode) {
             // left
             case 37:
+                direction = 'left';
 
             break;
 
             // up
             case 38:
+                direction = 'up';
 
             break;
 
             // right
             case 39:
+                direction = 'right';
 
             break;
 
             // down
             case 40:
+                direction = 'down';
 
             break;
 
@@ -88,10 +95,35 @@
             case 32:
                 target.click();
 
+                return false;
+
             break;
         }
 
-        return false;
+        handleHandlerKeyDirection(target, direction);
+    }
+
+    function handleHandlerKeyDirection (target, direction) {
+        var matches = target.className.match(new RegExp('key-' + direction + ':([^\\s]+)'));
+        var match;
+        var target;
+        var type;
+
+        if (matches) {
+            match = matches[1];
+
+            type = match.split('-', 1);
+
+            if (type[0] === 'dynamic') {
+
+            } else {
+                target = document.getElementById(match);
+            };
+
+            if (target) {
+                target.focus();
+            };
+        };
     }
 
     function ready () {
