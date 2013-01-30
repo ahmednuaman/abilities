@@ -1,16 +1,26 @@
 (function () {
+    var container = document.getElementById('container');
     var hasClassName = !!document['getElementsByClassName'] && false;
     var hasQuerySelector = !!document['querySelector'] && false;
 
     function assignHandlers () {
+        assignHandlerCheckbox();
         assignHandlerRunAllTests();
         assignHandlerTabs();
+    }
+
+    function assignHandlerCheckbox () {
+        var handlers = hasClassName ? document.getElementsByClassName('checkbox-handler') : findChildClasses(container, 'checkbox-handler');
+
+        for (var i = handlers.length - 1; i >= 0; i--) {
+            handlers[i].onclick = handleCheckboxToggle;
+        };
     }
 
     function assignHandlerRunAllTests () {
         var link = document.getElementById('link-run-all-tests');
 
-        link.onclick = runAllTests;
+        link.onclick = handleRunAllTests;
     }
 
     function assignHandlerTabs () {
@@ -20,19 +30,18 @@
         for (var i = tabs.length - 1; i >= 0; i--) {
             tab = tabs[i];
 
-            tab.onclick = tabTo;
+            tab.onclick = handleTabTo;
         };
     }
 
     function findKeyHandlers () {
         var className = 'key-handler';
-        var parent = document.getElementById('container');
         var child;
         var handler;
         var handlers;
         var len;
 
-        handlers = hasClassName ? document.getElementsByClassName(className) : findChildClasses(parent, className);
+        handlers = hasClassName ? document.getElementsByClassName(className) : findChildClasses(container, className);
 
         len = handlers.length - 1;
 
@@ -70,9 +79,9 @@
 
     function findChildCSS (selector) {
         var path = selector.split('>');
+        var target = arguments[1];
         var pos;
         var temp;
-        var target;
 
         for (var i = 0; i < path.length; i++) {
             pos = path[i];
@@ -179,6 +188,8 @@
         var target;
         var type;
 
+        console.log(matches)
+
         if (matches) {
             match = matches[1];
 
@@ -196,12 +207,21 @@
         };
     }
 
-    function ready () {
-        assignHandlers();
-        findKeyHandlers();
+    function handleCheckboxToggle (event) {
+        var checkbox = event.currentTarget.getElementsByTagName('input')[0];
+
+        checkbox.checked = !checkbox.checked;
+
+        if (checkbox.checked) {
+            event.currentTarget.className += ' label label-success';
+        } else {
+            event.currentTarget.className = event.currentTarget.className.replace(/\s?label\-success\s?/gi, '').replace(/\s?label\s?/gi, '');
+        };
+
+        return false;
     }
 
-    function runAllTests () {
+    function handleRunAllTests (event) {
         var els = document.getElementsByTagName('input');
         var form = document.getElementById('all-tests-form');
         var el;
@@ -216,7 +236,7 @@
         form.submit();
     }
 
-    function tabTo (event) {
+    function handleTabTo (event) {
         var divs = document.getElementById('tab-container').getElementsByTagName('div');
         var lis = document.getElementById('nav-tabs-container').getElementsByTagName('li');
         var href = event.currentTarget.href.split('#');
@@ -234,6 +254,11 @@
         document.getElementById(href[1]).className += ' active';
 
         document.getElementById('nav-' + href[1]).className += ' active';
+    }
+
+    function ready () {
+        assignHandlers();
+        findKeyHandlers();
     }
 
     ready();
