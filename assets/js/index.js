@@ -1,6 +1,6 @@
 (function () {
     function assignHandlers () {
-        var link = document.getElementById('run-all-tests');
+        var link = document.getElementById('link-run-all-tests');
         var tabs = document.getElementById('nav-tabs-container').getElementsByTagName('a');
         var tab;
 
@@ -13,6 +13,38 @@
         link.onclick = runAllTests;
     }
 
+    function findKeyHandlers () {
+        var className = 'key-handler';
+        var parent = document.getElementById('container');
+        var child;
+        var handlers;
+
+        handlers = findChildClasses(parent, className);
+    }
+
+    function findChildClasses (parent, className) {
+        var children = parent.children;
+        var handlers = [ ];
+
+        for (var i = children.length - 1; i >= 0; i--) {
+            child = children[i];
+
+            if (child['className']) {
+                if (child.className.indexOf(className) !== -1) {
+                    handlers.push(child);
+                };
+            };
+
+            if (child['children']) {
+                handlers = handlers.concat(
+                    findChildClasses(child, className)
+                );
+            };
+        };
+
+        return handlers;
+    }
+
     function handleKeyPress (event) {
 
     }
@@ -20,11 +52,12 @@
     function ready () {
         var body = document.getElementsByTagName('body')[0];
 
+        assignHandlers();
+        findKeyHandlers();
+
         body.onkeypress = handleKeyPress;
 
         body.focus();
-
-        assignHandlers();
     }
 
     function runAllTests () {
