@@ -17,9 +17,18 @@
         var className = 'key-handler';
         var parent = document.getElementById('container');
         var child;
+        var handler;
         var handlers;
 
         handlers = findChildClasses(parent, className);
+
+        for (var i = handlers.length - 1; i >= 0; i--) {
+            handler = handlers[i];
+
+            handler.onkeydown = handleHandlerKeyDown;
+        };
+
+        handlers[0].focus();
     }
 
     function findChildClasses (parent, className) {
@@ -45,19 +54,49 @@
         return handlers;
     }
 
-    function handleKeyPress (event) {
+    function handleHandlerKeyDown (event) {
+        var target = event.currentTarget;
+        var direction;
 
+        if (!event) {
+            event = window.event;
+        };
+
+        switch (event.keyCode) {
+            // left
+            case 37:
+
+            break;
+
+            // up
+            case 38:
+
+            break;
+
+            // right
+            case 39:
+
+            break;
+
+            // down
+            case 40:
+
+            break;
+
+            // enter or space
+            case 13:
+            case 32:
+                target.click();
+
+            break;
+        }
+
+        return false;
     }
 
     function ready () {
-        var body = document.getElementsByTagName('body')[0];
-
         assignHandlers();
         findKeyHandlers();
-
-        body.onkeypress = handleKeyPress;
-
-        body.focus();
     }
 
     function runAllTests () {
