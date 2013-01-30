@@ -73,7 +73,9 @@ require_once 'harness.php';
                                 <?php $i = 0; ?>
                                 <?php foreach ($folders as $folder => $tests): ?>
                                     <li class="title <?php echo $i === 0 ? 'active' : ''; ?>">
-                                        <a href="#tab-<?php echo $folder; ?>" id="link-tab-<?php echo $folder; ?>" class="key-down:dynamic-div.tab-page>label[0]>input key-up:link-run-all-tests key-right:link-tab-<?php echo Helper::find_in_array($folder_names, $i + 1); ?> key-left:link-tab-<?php echo Helper::find_in_array($folder_names, $i - 1); ?>">
+                                        <?php $key_right = Helper::find_in_array($folder_names, $i + 1); ?>
+                                        <?php $key_left = Helper::find_in_array($folder_names, $i - 1); ?>
+                                        <a href="#tab-<?php echo $folder; ?>" id="link-tab-<?php echo $folder; ?>" class="key-down:dynamic-div.tab-page.active>label[0]>input key-up:link-run-all-tests key-right:link-tab-<?php echo $key_right; ?> key-left:link-tab-<?php echo $key_left; ?>">
                                             <?php echo $folder; ?>
                                         </a>
                                     </li>
@@ -81,15 +83,18 @@ require_once 'harness.php';
                             </ul>
                             <div id="tab-container" class="tab-content">
                                 <?php $i = 0; ?>
-                                <?php foreach ($harness->get_all_tests() as $folder => $tests): ?>
+                                <?php foreach ($folders as $folder => $tests): ?>
                                     <div id="tab-<?php echo $folder; ?>" class="tab-page <?php echo $i === 0 ? 'active' : ''; ?>">
-                                        <?php foreach ($tests as $test): ?>
+                                        <?php $tests_total = count($tests) - 1; ?>
+                                        <?php foreach ($tests as $j => $test): ?>
                                             <label>
-                                                <input id="checkbox-test-<?php echo $test->name; ?>" type="checkbox" name="tests[]" value="<?php echo $test->path; ?>">
+                                                <?php $key_up = $j === 0 ? 'link-tab-' . $folder : 'checkbox-test-' . $folder . '-' . ($j - 1); ?>
+                                                <?php $key_down = $j === $tests_total ? 'button-run-tests' : 'checkbox-test-' . $folder . '-' . ($j + 1); ?>
+                                                <input id="checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" type="checkbox" name="tests[]" value="<?php echo $test->path; ?>" class="key-up:<?php echo $key_up; ?> key-down:<?php echo $key_down; ?>">
                                                 <strong><?php echo $test->name; ?></strong>: <?php echo $test->description; ?>
                                             </label>
                                             <br>
-                                        <?php endforeach ?>
+                                        <?php endforeach; ?>
                                     </div>
                                  <?php $i++; endforeach; ?>
                             </div>
