@@ -18,7 +18,7 @@ require_once 'harness.php';
     <body class="<?php echo $harness->is_testing ? 'testing' : 'not-testing' ?>">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
-                <a href="index.php" id="link-navbar-brand" class="brand key-down:link-run-all-tests key-up:button-run-tests">Abilities</a>
+                <a href="index.php" id="link-navbar-brand" class="brand key-handler key-down:link-run-all-tests key-up:button-run-tests">Abilities</a>
             </div>
         </div>
         <div class="container-fluid">
@@ -63,7 +63,7 @@ require_once 'harness.php';
                         <?php $folders = $harness->get_all_tests(); ?>
                         <?php $folder_names = array_keys($folders); ?>
                         <h3>
-                            <a href="#" id="link-run-all-tests" class="key-down:link-tab-<?php echo $folder_names[0]; ?> key-up:link-navbar-brand">
+                            <a href="#" id="link-run-all-tests" class="key-handler key-down:link-tab-<?php echo $folder_names[0]; ?> key-up:link-navbar-brand">
                                 Run all the tests!
                             </a>
                             or select some...
@@ -75,7 +75,7 @@ require_once 'harness.php';
                                     <li class="title <?php echo $i === 0 ? 'active' : ''; ?>">
                                         <?php $key_right = Helper::find_in_array($folder_names, $i + 1); ?>
                                         <?php $key_left = Helper::find_in_array($folder_names, $i - 1); ?>
-                                        <a href="#tab-<?php echo $folder; ?>" id="link-tab-<?php echo $folder; ?>" class="key-down:dynamic-div.tab-page.active>label[0]>input key-up:link-run-all-tests key-right:link-tab-<?php echo $key_right; ?> key-left:link-tab-<?php echo $key_left; ?>">
+                                        <a href="#tab-<?php echo $folder; ?>" id="link-tab-<?php echo $folder; ?>" class="key-handler key-down:dynamic-div.tab-page.active>label[0]>input key-up:link-run-all-tests key-right:link-tab-<?php echo $key_right; ?> key-left:link-tab-<?php echo $key_left; ?>">
                                             <?php echo $folder; ?>
                                         </a>
                                     </li>
@@ -90,7 +90,7 @@ require_once 'harness.php';
                                             <label>
                                                 <?php $key_up = $j === 0 ? 'link-tab-' . $folder : 'checkbox-test-' . $folder . '-' . ($j - 1); ?>
                                                 <?php $key_down = $j === $tests_total ? 'button-run-tests' : 'checkbox-test-' . $folder . '-' . ($j + 1); ?>
-                                                <input id="checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" type="checkbox" name="tests[]" value="<?php echo $test->path; ?>" class="key-up:<?php echo $key_up; ?> key-down:<?php echo $key_down; ?>">
+                                                <input id="checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" type="checkbox" name="tests[]" value="<?php echo $test->path; ?>" class="key-handler key-up:<?php echo $key_up; ?> key-down:<?php echo $key_down; ?>">
                                                 <strong><?php echo $test->name; ?></strong>: <?php echo $test->description; ?>
                                             </label>
                                             <br>
@@ -99,7 +99,7 @@ require_once 'harness.php';
                                  <?php $i++; endforeach; ?>
                             </div>
                             <br>
-                            <button id="button-run-tests" type="submit" class="btn btn-block btn-large btn-primary key-up:dynamic-div.tab-page.active>label[-1]>input">
+                            <button id="button-run-tests" type="submit" class="btn btn-block btn-large btn-primary key-handler key-up:dynamic-div.tab-page.active>label[-1]>input">
                                 Run tests
                             </button>
                         </form>
