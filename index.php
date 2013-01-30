@@ -1,4 +1,7 @@
 <?php
+// set el time
+$time = time();
+
 // get the harness
 require_once 'harness.php';
 ?>
@@ -26,10 +29,6 @@ require_once 'harness.php';
             <?php endif; ?>
             <div class="row-fluid">
                 <?php if ($harness->is_testing): ?>
-                    <?php
-                    // set el time
-                    $time = time();
-                    ?>
                     <div class="span8">
                         <div id="test-complete" class="alert alert-block alert-success" style="display: none;">
                             <h4>Test successfully completed!</h4>
@@ -108,53 +107,7 @@ require_once 'harness.php';
             <script src="assets/js/config.js?x=<?php echo $time; ?>"></script>
             <script src="<?php echo $harness->current_test->path; ?>?x=<?php echo $time; ?>"></script>
         <?php else: ?>
-            <script>
-                function runAllTests () {
-                    var els = document.getElementsByTagName('input');
-                    var form = document.getElementById('all-tests-form');
-                    var el;
-
-                    for (var i = els.length - 1; i >= 0; i--)
-                    {
-                        el = els[i];
-
-                        el.checked = true;
-                    }
-
-                    form.submit();
-                }
-
-                function tabTo (event) {
-                    var container = document.getElementById('tab-container');
-                    var divs = container.getElementsByTagName('div');
-                    var href = event.currentTarget.href.split('#');
-                    var div;
-
-                    for (var i = divs.length - 1; i >= 0; i--) {
-                        div = divs[i];
-
-                        div.className = div.className.replace(/\s?active\s?/gim, '');
-                    };
-
-                    document.getElementById(href[1]).className += ' active';
-                }
-
-                var link = document.getElementById('run-all-tests');
-                var tabs = document.getElementById('nav-tabs-container').getElementsByTagName('a');
-                var tab;
-
-                for (var i = tabs.length - 1; i >= 0; i--) {
-                    tab = tabs[i];
-
-                    tab.onclick = tabTo;
-                    tab.onkeypress = tabTo;
-                };
-
-                link.onclick = runAllTests;
-                link.onkeypress = runAllTests;
-
-                link.focus();
-            </script>
+            <script src="assets/js/index.js?x=<?php echo $time; ?>"></script>
             <?php /*if (isset($_POST['autorun'])): ?>
                 <?php if ($_POST['autorun'] == '1'): ?>
                     <script>
