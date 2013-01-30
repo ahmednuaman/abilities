@@ -1,4 +1,32 @@
 (function () {
+    function assignHandlers () {
+        var link = document.getElementById('run-all-tests');
+        var tabs = document.getElementById('nav-tabs-container').getElementsByTagName('a');
+        var tab;
+
+        for (var i = tabs.length - 1; i >= 0; i--) {
+            tab = tabs[i];
+
+            tab.onclick = tabTo;
+        };
+
+        link.onclick = runAllTests;
+    }
+
+    function handleKeyPress (event) {
+
+    }
+
+    function ready () {
+        var body = document.getElementsByTagName('body')[0];
+
+        body.onkeypress = handleKeyPress;
+
+        body.focus();
+
+        assignHandlers();
+    }
+
     function runAllTests () {
         var els = document.getElementsByTagName('input');
         var form = document.getElementById('all-tests-form');
@@ -29,19 +57,5 @@
         document.getElementById(href[1]).className += ' active';
     }
 
-    var link = document.getElementById('run-all-tests');
-    var tabs = document.getElementById('nav-tabs-container').getElementsByTagName('a');
-    var tab;
-
-    for (var i = tabs.length - 1; i >= 0; i--) {
-        tab = tabs[i];
-
-        tab.onclick = tabTo;
-        tab.onkeypress = tabTo;
-    };
-
-    link.onclick = runAllTests;
-    link.onkeypress = runAllTests;
-
-    link.focus();
+    ready();
 })();
