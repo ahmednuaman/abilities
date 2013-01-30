@@ -12,7 +12,7 @@ require_once 'harness.php';
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/styles.css?x=<?php echo $time; ?>">
         <title>Test harness</title>
     </head>
     <body class="<?php echo $harness->is_testing ? 'testing' : 'not-testing' ?>">
