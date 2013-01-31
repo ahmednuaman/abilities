@@ -209,9 +209,9 @@
         var target = event.currentTarget;
         var checkbox = target.getElementsByTagName('input')[0];
 
-        checkbox.checked = !checkbox.checked;
+        checkbox.checked = !!checkbox.checked ? '' : 'checked';
 
-        if (checkbox.checked) {
+        if (!!checkbox.checked) {
             target.className += ' selected';
         } else {
             target.className = target.className.replace(/\s?selected\s?/gi, '');
