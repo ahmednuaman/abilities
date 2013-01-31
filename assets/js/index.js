@@ -208,14 +208,15 @@
     }
 
     function handleCheckboxToggle (event) {
-        var checkbox = event.currentTarget.getElementsByTagName('input')[0];
+        var target = event.currentTarget;
+        var checkbox = target.getElementsByTagName('input')[0];
 
         checkbox.checked = !checkbox.checked;
 
         if (checkbox.checked) {
-            event.currentTarget.className += ' label label-success';
+            target.className += ' selected';
         } else {
-            event.currentTarget.className = event.currentTarget.className.replace(/\s?label\-success\s?/gi, '').replace(/\s?label\s?/gi, '');
+            target.className = target.className.replace(/\s?selected\s?/gi, '');
         };
 
         return false;
@@ -237,6 +238,8 @@
     }
 
     function handleTabTo (event) {
+        var activeClass = ' active';
+        var activeRegex = /\s?active\s?/gi;
         var divs = document.getElementById('tab-container').getElementsByTagName('div');
         var lis = document.getElementById('nav-tabs-container').getElementsByTagName('li');
         var href = event.currentTarget.href.split('#');
@@ -247,13 +250,13 @@
             div = divs[i];
             li = lis[i];
 
-            div.className = div.className.replace(/\s?active\s?/gi, '');
-            li.className = li.className.replace(/\s?active\s?/gi, '');
+            div.className = div.className.replace(activeRegex, '');
+            li.className = li.className.replace(activeRegex, '');
         };
 
-        document.getElementById(href[1]).className += ' active';
+        document.getElementById(href[1]).className += activeClass;
 
-        document.getElementById('nav-' + href[1]).className += ' active';
+        document.getElementById('nav-' + href[1]).className += activeClass;
     }
 
     function ready () {
