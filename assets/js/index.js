@@ -188,8 +188,6 @@
         var target;
         var type;
 
-        console.log(matches)
-
         if (matches) {
             match = matches[1];
 
