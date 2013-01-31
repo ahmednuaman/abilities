@@ -2,6 +2,7 @@
     var container = document.getElementById('container');
     var hasClassName = !!document['getElementsByClassName'] && false;
     var hasQuerySelector = !!document['querySelector'] && false;
+    var keyCodes = getKeyCodes(deviceString);
 
     function assignHandlers () {
         assignHandlerCheckbox();
@@ -146,33 +147,32 @@
 
         switch (event.keyCode) {
             // left
-            case 37:
+            case keyCodes.left:
                 direction = 'left';
 
             break;
 
             // up
-            case 38:
+            case keyCodes.up:
                 direction = 'up';
 
             break;
 
             // right
-            case 39:
+            case keyCodes.right:
                 direction = 'right';
 
             break;
 
             // down
-            case 40:
+            case keyCodes.down:
                 direction = 'down';
 
             break;
 
-            // enter or space
-            case 13:
-            case 32:
-                target.click();
+            // select
+            case keyCodes.select:
+                handleClickOn(target);
 
                 return false;
 
@@ -255,6 +255,25 @@
         document.getElementById(href[1]).className += activeClass;
 
         document.getElementById('nav-' + href[1]).className += activeClass;
+    }
+
+    function handleClickOn (target) {
+        var cancelled = false;
+
+        if (document.createEvent) {
+            var event = document.createEvent('MouseEvents');
+            event.initMouseEvent('click', true, true, window,
+                0, 0, 0, 0, 0,
+                false, false, false, false,
+                0, null);
+            cancelled = !target.dispatchEvent(event);
+        } else if (target.fireEvent) {
+            cancelled = !target.fireEvent('onclick');
+        };
+
+        if (!cancelled) {
+            target.click();
+        };
     }
 
     function ready () {

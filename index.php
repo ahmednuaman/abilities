@@ -128,6 +128,10 @@ require_once 'harness.php';
             <script src="assets/js/config.js?x=<?php echo $time; ?>"></script>
             <script src="<?php echo $harness->current_test->path; ?>?x=<?php echo $time; ?>"></script>
         <?php else: ?>
+            <script>
+                var deviceString = '<?php echo str_replace("'", "\'", $_SESSION['device_id']); ?>';
+            </script>
+            <script src="assets/js/keycodes.js?x=<?php echo $time; ?>"></script>
             <script src="assets/js/index.js?x=<?php echo $time; ?>"></script>
             <?php /*if (isset($_POST['autorun'])): ?>
                 <?php if ($_POST['autorun'] == '1'): ?>
