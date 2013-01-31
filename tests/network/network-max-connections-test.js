@@ -4,6 +4,7 @@ type: number
 */
 
 var connections = 0;
+var increment = 100 / (limit * 2);
 var imagesLoaded = 0;
 var limit = 30;
 var time = (new Date()).getTime();
@@ -24,6 +25,8 @@ function loadImage(url)
         }
 
         imagesLoaded++;
+
+        helpers.progressBar.style.width = (++progress * increment) + '%';
 
         if (imagesLoaded === limit)
         {

@@ -30,9 +30,7 @@ suite
 
         img.src = url + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/some-path/' + (new Date()).getTime());
 
-        progress += 1;
-
-        helpers.progressBar.style.width = progress + '%';
+        helpers.progressBar.style.width = ++progress + '%';
 
         helpers.log('Tracking: ' + img.src);
     }
