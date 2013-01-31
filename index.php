@@ -96,7 +96,6 @@ require_once 'harness.php';
                                                         <strong><?php echo $test->name; ?></strong>: <?php echo $test->description; ?>
                                                     </label>
                                                 </a>
-                                                <br>
                                             <?php endforeach; ?>
                                         </div>
                                      <?php $i++; endforeach; ?>

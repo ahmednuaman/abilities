@@ -12,6 +12,7 @@
   display: block;
   height: 19px;
   padding: 3px 0 3px 30px;
+  margin: 0;
 }
 .tab-content .tab-page a label input {
   display: none;
