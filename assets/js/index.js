@@ -52,7 +52,9 @@
             handler.onkeydown = handleHandlerKeyDown;
         };
 
-        handlers[hasClassName ? 0 : len].focus();
+        handler = handlers[hasClassName ? 0 : len];
+
+        handler.focus();
     }
 
     function findChildClasses (parent, className) {
