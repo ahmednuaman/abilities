@@ -1,6 +1,8 @@
 // our harness helpers
-
 var helpers = {
+    // get the progress bar
+    progressBar: document.getElementById('test-progress-bar'),
+
     // a simple function that creates a load of elements for us, this is handy for selector speed testing
     createElements: function(number, tag, cls, id)
     {
@@ -48,6 +50,8 @@ var helpers = {
         var alert = document.getElementById('test-complete');
         var form = document.getElementById('test-form');
         var input = document.getElementById('test-result-value');
+
+        helpers.progressBar.style.width = '100%';
 
         helpers.log('Saving result: ' + result);
 

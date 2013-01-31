@@ -43,6 +43,9 @@ require_once 'harness.php';
                             <div id="test-complete" class="alert alert-block alert-success" style="display: none;">
                                 <h4>Test successfully completed!</h4>
                             </div>
+                            <div id="test-progress" class="progress">
+                                <div id="test-progress-bar" class="bar"></div>
+                            </div>
                             <pre id="log-area"></pre>
                             <div id="dump-area"></div>
                             <form id="test-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
