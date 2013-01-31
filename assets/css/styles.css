@@ -1,6 +1,10 @@
 @import 'bootstrap.min.css';
-*:focus {
-  background-color: red !important;
+a:focus {
+  background-color: #666666 !important;
+  color: #ffffff !important;
+}
+button:focus {
+  background: #666666;
 }
 .tab-content .tab-page {
   display: none;
