@@ -6,11 +6,17 @@ var suite = new Benchmark.Suite();
 var dumpArea = document.getElementById('dump-area');
 var logArea = document.getElementById('log-area');
 
+// reg our progress
+var progress = 0;
+var totalBenches;
+
 // register listeners
 suite
-.on('start', function()
+.on('start', function(event)
 {
     helpers.log('Starting test');
+
+    totalBenches = event.currentTarget.length * .01;
 })
 .on('complete', function()
 {
@@ -25,4 +31,8 @@ suite
 .on('cycle', function(event)
 {
     helpers.log('Cycle: ' + String(event.target));
+
+    progress += 100 * totalBenches;
+
+    helpers.progressBar.style.width = progress + '%';
 });

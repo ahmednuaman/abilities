@@ -44,7 +44,7 @@ require_once 'harness.php';
                                 <h4>Test successfully completed!</h4>
                             </div>
                             <div id="test-progress" class="progress">
-                                <div id="test-progress-bar" class="bar"></div>
+                                <div id="test-progress-bar" class="bar" style="width: 0%;"></div>
                             </div>
                             <pre id="log-area"></pre>
                             <div id="dump-area"></div>
