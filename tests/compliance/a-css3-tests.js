@@ -213,6 +213,8 @@ type: boolean
         }
 
         helpers.log('Tests: ' + this.title + ' (' + this.id + ') = ' + this.score);
+
+        helpers.progressBar.style.width = (++progress * totalSpecs) + '%';
     }
 
     Test.prototype = {
@@ -349,6 +351,8 @@ type: boolean
             specs.push(spec);
         }
 
+        totalSpecs = 100 / specs.length;
+
         (function() {
             if(specs.length) {
                 // Get spec id
@@ -362,7 +366,7 @@ type: boolean
                 timeBefore = +new Date;
 
                 // Schedule next test
-                setTimeout(arguments.callee, 50)
+                setTimeout(arguments.callee, 50);
             }
             else {
                 // Done!
@@ -372,6 +376,8 @@ type: boolean
             }
         })();
     }
+
+    var totalSpecs;
 
     window.Specs = {
         "css3-background": {
