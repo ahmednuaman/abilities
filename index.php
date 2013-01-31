@@ -39,7 +39,7 @@ require_once 'harness.php';
                             </div>
                             <?php if ($harness->current_test->warnings): ?>
                                 <div class="alert alert-block alert-warning">
-                                    <span class="label label-warning">Warning!</span>
+                                    <h4>Warning!</h4>
                                     <?php echo $harness->current_test->warnings; ?>
                                 </div>
                             <?php endif; ?>
