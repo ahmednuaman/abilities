@@ -130,7 +130,7 @@ class Harness
         }
 
         // have we finished testing?
-        if (!isset($_SESSION['remaining_tests']) && !$this->current_test && isset($_SESSION['tests_started']) && !isset($_POST['tests']))
+        if (isset($_SESSION['tests_started']) && isset($_POST['result']) && !isset($_SESSION['remaining_tests']) && !$this->current_test && !isset($_POST['tests']))
         {
             // get the time we finished tests
             $this->tests_time = time() - (int)$_SESSION['tests_started'];
