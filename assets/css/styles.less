@@ -1,7 +1,7 @@
 @import 'bootstrap.min.css';
 
 *:focus {
-    background: red !important;
+    background-color: red !important;
 }
 
 .tab-content {
@@ -12,10 +12,18 @@
             display: block;
         }
 
-        label {
-            input {
+        a {
+            display: block;
+            height: 19px;
+            padding: 3px 0 3px 30px;
 
+            label input {
+                display: none;
             }
+        }
+
+        a.selected {
+            background: url(../img/tick.png) left center no-repeat;
         }
     }
 }

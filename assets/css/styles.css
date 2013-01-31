@@ -1,12 +1,23 @@
 @import 'bootstrap.min.css';
 *:focus {
-  background: red !important;
+  background-color: red !important;
 }
 .tab-content .tab-page {
   display: none;
 }
 .tab-content .tab-page.active {
   display: block;
+}
+.tab-content .tab-page a {
+  display: block;
+  height: 19px;
+  padding: 3px 0 3px 30px;
+}
+.tab-content .tab-page a label input {
+  display: none;
+}
+.tab-content .tab-page a.selected {
+  background: url(../img/tick.png) left center no-repeat;
 }
 .title {
   text-transform: capitalize;
