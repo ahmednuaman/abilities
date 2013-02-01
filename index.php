@@ -1,6 +1,6 @@
 <?php
-// set el time
-$time = time();
+// get our commit id
+require_once 'commit.php';
 
 // get our helper
 require_once 'helper.php';
@@ -12,7 +12,7 @@ require_once 'harness.php';
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="assets/css/styles.css?x=<?php echo $time; ?>">
+        <link rel="stylesheet" href="assets/css/styles.css?x=<?php echo COMMIT_ID; ?>">
         <title>Test harness</title>
     </head>
     <body class="<?php echo $harness->is_testing ? 'testing' : 'not-testing' ?>">
@@ -124,15 +124,15 @@ require_once 'harness.php';
         </div>
         <?php if ($harness->is_testing): ?>
             <script src="assets/js/vendor/benchmark-1.0.0.js"></script>
-            <script src="assets/js/helpers.js?x=<?php echo $time; ?>"></script>
-            <script src="assets/js/config.js?x=<?php echo $time; ?>"></script>
-            <script src="<?php echo $harness->current_test->path; ?>?x=<?php echo $time; ?>"></script>
+            <script src="assets/js/helpers.js?x=<?php echo COMMIT_ID; ?>"></script>
+            <script src="assets/js/config.js?x=<?php echo COMMIT_ID; ?>"></script>
+            <script src="<?php echo $harness->current_test->path; ?>?x=<?php echo COMMIT_ID; ?>"></script>
         <?php else: ?>
             <script>
                 var deviceString = '<?php echo str_replace("'", "\'", $_SESSION['device_id']); ?>';
             </script>
-            <script src="assets/js/keycodes.js?x=<?php echo $time; ?>"></script>
-            <script src="assets/js/index.js?x=<?php echo $time; ?>"></script>
+            <script src="assets/js/keycodes.js?x=<?php echo COMMIT_ID; ?>"></script>
+            <script src="assets/js/index.js?x=<?php echo COMMIT_ID; ?>"></script>
             <?php /*if (isset($_POST['autorun'])): ?>
                 <?php if ($_POST['autorun'] == '1'): ?>
                     <script>
