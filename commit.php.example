@@ -1,0 +1,4 @@
+<?php
+// add this as a post-commit hook:
+// sed s/123/$(git rev-parse --verify HEAD)/ commit.php.example > commit.php
+define('COMMIT_ID', '123');
