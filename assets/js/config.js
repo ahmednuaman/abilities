@@ -21,7 +21,7 @@ suite
 .on('complete', function()
 {
     var fastest = String(this.filter('fastest').pluck('name'));
-    var message = 'Fastest: ' + fastest + '; benches: ' + helpers.parseBenchesData(this);
+    var message = helpers.parseBenchesData(this);
 
     helpers.log('Finished test, fastest is ' + fastest);
     helpers.log('Saving data');
