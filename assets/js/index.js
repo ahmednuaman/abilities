@@ -2,7 +2,7 @@
     var container = document.getElementById('container');
     var hasClassName = !!document['getElementsByClassName'] && false;
     var hasQuerySelector = !!document['querySelector'] && false;
-    var keyCodes = getKeyCodes(deviceString);
+    var keyCodes;
 
     function assignHandlers () {
         assignHandlerCheckbox();
@@ -21,7 +21,9 @@
     function assignHandlerRunAllTests () {
         var link = document.getElementById('link-run-all-tests');
 
-        link.onclick = handleRunAllTests;
+        if (link) {
+            link.onclick = handleRunAllTests;
+        };
     }
 
     function assignHandlerTabs () {
@@ -280,7 +282,12 @@
 
     function ready () {
         assignHandlers();
-        findKeyHandlers();
+
+        if (window['deviceString']) {
+            keyCodes = getKeyCodes(deviceString);
+
+            findKeyHandlers();
+        };
     }
 
     ready();
