@@ -3,8 +3,8 @@ description: A test to check to see which tracking system is fastest, in this ca
 type: benchmark
 */
 
-var urlHttp = 'http://metrics.sky.com/b/ss/bskybinternationaldev/1/H.25.3--NS/0';
-var urlHttps = 'https://smetrics.sky.com/b/ss/bskybinternationaldev/1/H.25.3--NS/0';
+var urlHttp = 'http://metrics.sky.com/b/ss/bskybzairglobal/1/H.25.3--NS/0';
+var urlHttps = 'https://smetrics.sky.com/b/ss/bskybzairglobal/1/H.25.3--NS/0';
 
 suite
 .add('tracking-omniture#track-http', {
