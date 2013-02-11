@@ -20,7 +20,7 @@ suite
             dfd.resolve();
         };
 
-        img.src = urlHttp + '?pageName=some-path-' + (new Date()).getTime();
+        img.src = urlHttp + '?pageName=http-some-path-' + (new Date()).getTime();
 
         helpers.progressBar.style.width = ++progress + '%';
 
@@ -40,7 +40,7 @@ suite
             dfd.resolve();
         };
 
-        img.src = urlHttps + '?pageName=some-path-' + (new Date()).getTime();
+        img.src = urlHttps + '?pageName=https-some-path-' + (new Date()).getTime();
 
         helpers.progressBar.style.width = ++progress + '%';
 

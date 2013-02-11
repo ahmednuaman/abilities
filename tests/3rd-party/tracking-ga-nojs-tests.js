@@ -29,7 +29,7 @@ suite
             dfd.resolve();
         };
 
-        img.src = urlHttp + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/some-path/' + (new Date()).getTime());
+        img.src = urlHttp + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/http/some-path/' + (new Date()).getTime());
 
         helpers.progressBar.style.width = ++progress + '%';
 
@@ -49,7 +49,7 @@ suite
             dfd.resolve();
         };
 
-        img.src = urlHttps + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/some-path/' + (new Date()).getTime());
+        img.src = urlHttps + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/https/some-path/' + (new Date()).getTime());
 
         helpers.progressBar.style.width = ++progress + '%';
 
