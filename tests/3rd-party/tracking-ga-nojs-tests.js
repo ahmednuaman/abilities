@@ -3,7 +3,7 @@ description: A test to check to see which tracking system is fastest, in this ca
 type: benchmark
 */
 
-var url = 'http://www.google-analytics.com/__utm.gif?' +
+var urlHttp = 'http://www.google-analytics.com/__utm.gif?' +
         'utmwv=4.4sh' +
         // '&utmn=' . getRandomNumber() .
         '&utmhn=' + encodeURIComponent(document.domain) +
@@ -13,6 +13,7 @@ var url = 'http://www.google-analytics.com/__utm.gif?' +
         '&utmcc=__utma%3D999.999.999.999.999.1%3B' +
         '&utmvid=0x62f8009219e92e79' +
         '&utmip=86.149.4.111';
+var urlHttps = urlHttp.replace('http://', 'https://');
 
 suite
 .add('tracking-ga#track-http', {
@@ -28,7 +29,7 @@ suite
             dfd.resolve();
         };
 
-        img.src = url + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/some-path/' + (new Date()).getTime());
+        img.src = urlHttp + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/some-path/' + (new Date()).getTime());
 
         helpers.progressBar.style.width = ++progress + '%';
 
@@ -48,7 +49,7 @@ suite
             dfd.resolve();
         };
 
-        img.src = url.replace('http://', 'https://') + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/some-path/' + (new Date()).getTime());
+        img.src = urlHttps + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/some-path/' + (new Date()).getTime());
 
         helpers.progressBar.style.width = ++progress + '%';
 
