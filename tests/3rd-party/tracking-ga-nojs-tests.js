@@ -15,7 +15,7 @@ var url = 'http://www.google-analytics.com/__utm.gif?' +
         '&utmip=86.149.4.111';
 
 suite
-.add('tracking-ga#track', {
+.add('tracking-ga#track-http', {
     defer: true,
     fn: function(dfd)
     {
@@ -35,7 +35,7 @@ suite
         helpers.log('Tracking: ' + img.src);
     }
 })
-.add('tracking-ga#track', {
+.add('tracking-ga#track-https', {
     defer: true,
     fn: function(dfd)
     {
