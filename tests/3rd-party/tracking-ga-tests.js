@@ -14,7 +14,7 @@ suite
         var interval = setInterval(function()
         {
             try {
-                _gat._getTrackerByName();
+                _gaq._getTrackerByName();
 
                 clearInterval(interval);
 
