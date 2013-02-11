@@ -11,7 +11,7 @@ suite
 .add('tracking-omniture#track-page-view', function()
 {
     s.t({
-        pageName: 'js-' + (new Date()).getTime()
+        pageName: 'tv-' + (new Date()).getTime()
     });
 });
 
