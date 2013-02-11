@@ -35,6 +35,26 @@ suite
         helpers.log('Tracking: ' + img.src);
     }
 })
+.add('tracking-ga#track', {
+    defer: true,
+    fn: function(dfd)
+    {
+        var img = new Image();
+
+        img.onload = function()
+        {
+            helpers.log('Tracked: ' + img.src);
+
+            dfd.resolve();
+        };
+
+        img.src = url.replace('http://', 'https://') + '&utmn=' + Math.floor(Math.random() * 2147483647) + '&utmp=' + encodeURIComponent('/some-path/' + (new Date()).getTime());
+
+        helpers.progressBar.style.width = ++progress + '%';
+
+        helpers.log('Tracking: ' + img.src);
+    }
+})
 .run({
     async: true
 });
