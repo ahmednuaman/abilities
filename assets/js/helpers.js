@@ -61,7 +61,7 @@ var helpers = {
 
         setTimeout(function () {
             form.submit();
-        }, 2000);
+        }, 5000);
     },
 
     // a simple function that creates a cookie
