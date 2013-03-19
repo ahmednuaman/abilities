@@ -7,6 +7,11 @@ require_once 'helper.php';
 
 // get the harness
 require_once 'harness.php';
+
+// if this is a CE-HTML device then we have to set the MIME type to application/ce-html+xml; charset=utf-8
+if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
+    header('Content-type: application/ce-html+xml; charset=utf-8');
+}
 ?>
 <!DOCTYPE html>
 <html class="no-js">
