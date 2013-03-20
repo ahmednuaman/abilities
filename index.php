@@ -22,10 +22,8 @@ if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
     </head>
     <body class="<?php echo $harness->is_testing ? 'testing' : 'not-testing' ?>">
         <div id="container">
-            <div class="navbar navbar-static-top">
-                <div class="navbar-inner">
-                    <a href="index.php" id="link-navbar-brand" class="brand key-handler key-down:link-run-all-tests key-up:button-run-tests">Abilities</a>
-                </div>
+            <div class="navbar">
+                <a href="index.php" id="link-navbar-brand" class="key-handler key-down:link-run-all-tests key-up:button-run-tests">Abilities</a>
             </div>
             <div class="container-fluid">
                 <?php if ($harness->is_testing): ?>
@@ -40,12 +38,12 @@ if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
                     <?php if ($harness->is_testing): ?>
                         <div class="span8">
                             <?php if ($harness->current_test->warnings): ?>
-                                <div class="alert alert-block alert-warning">
+                                <div class="alert alert-warning">
                                     <h4>Warning!</h4>
                                     <?php echo $harness->current_test->warnings; ?>
                                 </div>
                             <?php endif; ?>
-                            <div id="test-complete" class="alert alert-block alert-success" style="display: none;">
+                            <div id="test-complete" class="alert alert-success" style="display: none;">
                                 <h4>Test successfully completed!</h4>
                             </div>
                             <div id="test-progress" class="progress">
@@ -64,7 +62,7 @@ if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
                         <div class="span8">
                             <?php if ($harness->tests_time): ?>
                                 <br />
-                                <div class="alert alert-block alert-success">
+                                <div class="alert alert-success">
                                     <h4>Tests were successfully run!</h4>
                                     Tests completed in <?php echo strftime('%M:%S', $harness->tests_time); ?>
                                 </div>
@@ -78,7 +76,7 @@ if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
                                 or select some...
                             </h3>
                             <form id="all-tests-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                                <ul id="nav-tabs-container" class="nav nav-tabs">
+                                <ul id="nav-tabs-container" class="nav-tabs">
                                     <?php $i = 0; ?>
                                     <?php foreach ($folders as $folder => $tests): ?>
                                         <li id="nav-tab-<?php echo $folder; ?>" class="title <?php echo $i === 0 ? 'active' : ''; ?>">
@@ -109,7 +107,7 @@ if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
                                      <?php $i++; endforeach; ?>
                                 </div>
                                 <br>
-                                <button id="button-run-tests" type="submit" class="btn btn-block btn-large btn-primary key-handler key-up:dynamic-#tab-container>.active>a:last-of-type key-down:link-navbar-brand">
+                                <button id="button-run-tests" type="submit" class="btn key-handler key-up:dynamic-#tab-container>.active>a:last-of-type key-down:link-navbar-brand">
                                     Run tests
                                 </button>
                             </form>
