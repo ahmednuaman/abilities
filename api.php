@@ -106,7 +106,7 @@ class API
         // loop through our results and add them to the db
         foreach ($result as $key => $value)
         {
-            $result[$key] = $this->_con->real_escape_string($value);
+            $result[$key] = $this->_con->real_escape_string(urldecode($value));
         }
 
         // add them!
