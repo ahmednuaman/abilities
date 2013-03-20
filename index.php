@@ -107,9 +107,7 @@ if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
                                      <?php $i++; endforeach; ?>
                                 </div>
                                 <br>
-                                <button id="button-run-tests" type="submit" class="btn key-handler key-up:dynamic-#tab-container>.active>a:last-of-type key-down:link-navbar-brand">
-                                    Run tests
-                                </button>
+                                <input id="button-run-tests" type="submit" class="submit key-handler key-up:dynamic-#tab-container>.active>a:last-of-type key-down:link-navbar-brand" value="Run tests">
                             </form>
                         </div>
                     <?php endif; ?>
