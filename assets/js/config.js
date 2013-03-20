@@ -36,3 +36,10 @@ suite
 
     helpers.progressBar.style.width = progress + '%';
 });
+
+// create a timeout that handles any errors created by our tests
+setTimeout(function () {
+    helpers.log('Aborting test!');
+
+    helpers.save('{"aborted": true}');
+}, 180000);

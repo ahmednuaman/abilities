@@ -29,7 +29,6 @@ var helpers = {
         helpers.log('Loading script: ' + url);
 
         scr.type = 'text/javascript';
-        scr.async = true;
         scr.src = url;
 
         (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(scr);
