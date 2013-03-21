@@ -13,7 +13,7 @@ var templat = '<ul>{{#each entries}}<li>{{this}}</li>{{/each}}</ul>';
 suite.on('cycle', function(){
     // clear the dump area
     dumpArea.innerHTML = '';
-}).add('handlebars#in-html', function () {
+}).add('handlebars#text-in-js', function () {
     var template = Handlebars.compile(templat);
 
     dumpArea.innerHTML += template(data);
