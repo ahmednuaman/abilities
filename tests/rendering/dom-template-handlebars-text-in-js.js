@@ -1,5 +1,6 @@
 /*
 description: A test case to see how fast it is to load and render Handlbars templates via text in a JS variable
+type: benchmark
 */
 
 helpers.loadScript('assets/js/vendor/handlebars.js');
