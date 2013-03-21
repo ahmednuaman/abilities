@@ -55,7 +55,7 @@ suite
             dfd.resolve();
         };
 
-        sendRequest(singleXHR, 'mock.json', callback);
+        sendRequest(singleXHR, 'mock/data.json?x=' + (new Date()).getTime(), callback);
     }
 })
 .add('network-xhr#single-post', {
@@ -66,7 +66,7 @@ suite
             dfd.resolve();
         };
 
-        sendRequest(singleXHR, 'mock.json', callback, 'foo=bar&bar=foo');
+        sendRequest(singleXHR, 'mock/data.json?x=' + (new Date()).getTime(), callback, 'foo=bar&bar=foo');
     }
 })
 .add('network-xhr#multiple-get', {
@@ -78,7 +78,7 @@ suite
         };
         var xhr = createXMLHTTPObject();
 
-        sendRequest(xhr, 'mock.json', callback);
+        sendRequest(xhr, 'mock/data.json?x=' + (new Date()).getTime(), callback);
     }
 })
 .add('network-xhr#multiple-post', {
@@ -90,7 +90,7 @@ suite
         };
         var xhr = createXMLHTTPObject();
 
-        sendRequest(xhr, 'mock.json', callback, 'foo=bar&bar=foo');
+        sendRequest(xhr, 'mock/data.json?x=' + (new Date()).getTime(), callback, 'foo=bar&bar=foo');
     }
 })
 .run({

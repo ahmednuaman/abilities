@@ -1,9 +1,13 @@
 /*
-description: A test case to see whether it is faster to render templates on the client or the server
+description: A test case to see how fast it is to load and render Handlbars templates via AJAX
 type: benchmark
 */
 
 helpers.loadScript('assets/js/vendor/handlebars.js');
+
+var data = {
+    entries: [1, 2, 3, 4, 5, 6, 7]
+};
 
 function sendRequest(url, callback) {
     var req = createXMLHTTPObject();
@@ -51,38 +55,19 @@ suite
     // clear the dump area
     dumpArea.innerHTML = '';
 })
-.add('dom-template#server', {
+.add('handlebars#ajax', {
     defer: true,
     fn: function(dfd)
     {
-        sendRequest('mock/dom-template-server-vs-handlebars.php', function (html) {
-            dumpArea.innerHTML += html.responseText;
+        sendRequest('mock/dom-template-handlebars-ajax.html?x=' + (new Date()).getTime(), function (xhr) {
+            var template = Handlebars.compile(xhr.responseText);
+
+            dumpArea.innerHTML += template(data);
 
             helpers.progressBar.style.width = ++progress + '%';
 
             dfd.resolve();
         });
-    }
-})
-.add('dom-template#handlebars', {
-    defer: true,
-    fn: function(dfd)
-    {
-        var func = 'jsonFlickrFeed';
-
-        window[func] = function (data) {
-            var template = Handlebars.compile('{{#each items}}<li><h1>{{title}}</h1><p>{{{description}}}</p></li>{{/each}}');
-
-            dumpArea.innerHTML += '<ul>' + template(data) + '</ul>';
-
-            helpers.progressBar.style.width = ++progress + '%';
-
-            window[func] = null;
-
-            dfd.resolve();
-        };
-
-        helpers.loadScript('http://api.flickr.com/services/feeds/photos_public.gne?format=json');
     }
 });
 
