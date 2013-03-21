@@ -9,8 +9,6 @@ var data = {
 };
 var templat = '<ul>{{#each entries}}<li>{{this}}</li>{{/each}}</ul>';
 
-body.appendChild(script);
-
 suite.on('cycle', function(){
     // clear the dump area
     dumpArea.innerHTML = '';
