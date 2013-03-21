@@ -11,10 +11,19 @@ require_once 'harness.php';
 // if this is a CE-HTML device then we have to set the MIME type to application/ce-html+xml; charset=utf-8
 if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
     header('Content-type: application/ce-html+xml; charset=utf-8');
+
+    echo '<?xml version="1.0" encoding="UTF-8"?>';
+    ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "ce-html-1.0-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <?php
+} else {
+    ?>
+<!DOCTYPE html>
+<html>
+    <?php
 }
 ?>
-<!DOCTYPE html>
-<html class="no-js">
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="assets/css/styles.css?x=<?php echo COMMIT_ID; ?>" />
