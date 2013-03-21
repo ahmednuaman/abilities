@@ -16,8 +16,8 @@ if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
 <!DOCTYPE html>
 <html class="no-js">
     <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="assets/css/styles.css?x=<?php echo COMMIT_ID; ?>">
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="assets/css/styles.css?x=<?php echo COMMIT_ID; ?>" />
         <title>Test harness</title>
     </head>
     <body class="<?php echo $harness->is_testing ? 'testing' : 'not-testing' ?>">
@@ -52,10 +52,10 @@ if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
                             <pre id="log-area"></pre>
                             <div id="dump-area"></div>
                             <form id="test-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                                <input type="hidden" name="result[name]" value="<?php echo $harness->current_test->name; ?>">
-                                <input type="hidden" name="result[type]" value="<?php echo $harness->current_test->type; ?>">
-                                <input type="hidden" name="result[description]" value="<?php echo $harness->current_test->description; ?>">
-                                <input type="hidden" name="result[value]" id="test-result-value" value="">
+                                <input type="hidden" name="result[name]" value="<?php echo $harness->current_test->name; ?>" />
+                                <input type="hidden" name="result[type]" value="<?php echo $harness->current_test->type; ?>" />
+                                <input type="hidden" name="result[description]" value="<?php echo $harness->current_test->description; ?>" />
+                                <input type="hidden" name="result[value]" id="test-result-value" value="" />
                             </form>
                         </div>
                     <?php else: ?>
@@ -98,7 +98,7 @@ if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
                                                 <?php $key_down = $j === $tests_total ? 'button-run-tests' : 'link-test-' . $folder . '-' . ($j + 1); ?>
                                                 <a href="#checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" id="link-test-<?php echo $folder; ?>-<?php echo $j; ?>" class="key-handler checkbox-handler key-up:<?php echo $key_up; ?> key-down:<?php echo $key_down; ?>">
                                                     <label>
-                                                        <input id="checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" type="checkbox" name="tests[]" value="<?php echo $test->path; ?>">
+                                                        <input id="checkbox-test-<?php echo $folder; ?>-<?php echo $j; ?>" type="checkbox" name="tests[]" value="<?php echo $test->path; ?>" />
                                                         <strong><?php echo $test->name; ?></strong>: <?php echo $test->description; ?>
                                                     </label>
                                                 </a>
@@ -106,8 +106,8 @@ if (stristr($_SERVER['HTTP_USER_AGENT'], 'ce-html')) {
                                         </div>
                                      <?php $i++; endforeach; ?>
                                 </div>
-                                <br>
-                                <input id="button-run-tests" type="submit" class="submit key-handler key-up:dynamic-#tab-container>.active>a:last-of-type key-down:link-navbar-brand" value="Run tests">
+                                <br />
+                                <input id="button-run-tests" type="submit" class="submit key-handler key-up:dynamic-#tab-container>.active>a:last-of-type key-down:link-navbar-brand" value="Run tests" />
                             </form>
                         </div>
                     <?php endif; ?>
